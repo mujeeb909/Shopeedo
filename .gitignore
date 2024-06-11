@@ -8,7 +8,6 @@
 /public/uploads
 /storage/*.key
 /storage/debugbar
-/vendor
 /temp
 /.idea
 /.vscode
@@ -33,4 +32,3 @@ install.zip
 /public/app-translations
 public/uploads.zip
 public/index.php
-vendor
