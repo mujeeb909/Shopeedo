@@ -8,7 +8,7 @@
 /public/uploads
 /storage/*.key
 /storage/debugbar
-# /vendor
+/vendor
 /temp
 /.idea
 /.vscode
