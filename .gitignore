@@ -33,3 +33,4 @@ install.zip
 /public/app-translations
 public/uploads.zip
 public/index.php
+vendor

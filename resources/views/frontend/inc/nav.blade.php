@@ -37,7 +37,7 @@
                         @if (get_setting('show_language_switcher') == 'on')
                             <li class="list-inline-item dropdown mr-4" id="lang-change">
 
-                                <a href="javascript:void(0)" class="dropdown-toggle text-secondary fs-12 py-2"
+                                <a href="javascript:void(0)" class="dropdown-toggle text-dark fs-12 py-2"
                                     data-toggle="dropdown" data-display="static">
                                     <span class="">{{ $system_language->name }}</span>
                                 </a>
@@ -64,7 +64,7 @@
                                     $system_currency = get_system_currency();
                                 @endphp
 
-                                <a href="javascript:void(0)" class="dropdown-toggle text-secondary fs-12 py-2"
+                                <a href="javascript:void(0)" class="dropdown-toggle text-dark fs-12 py-2"
                                     data-toggle="dropdown" data-display="static">
                                     {{ $system_currency->name }}
                                 </a>
@@ -137,9 +137,9 @@
                                         </svg>
                                     </span>
                                     <a href="{{ route('user.login') }}"
-                                        class="text-reset opacity-60 hov-opacity-100 hov-text-primary fs-12 d-inline-block border-right border-soft-light border-width-2 pr-2 ml-3">{{ translate('Login') }}</a>
+                                        class="text-dark opacity-60 hov-opacity-100 hov-text-primary fs-12 d-inline-block border-right border-soft-light border-width-2 pr-2 ml-3">{{ translate('Login') }}</a>
                                     <a href="{{ route('user.registration') }}"
-                                        class="text-reset opacity-60 hov-opacity-100 hov-text-primary fs-12 d-inline-block py-2 pl-2">{{ translate('Registration') }}</a>
+                                        class="text-dark opacity-60 hov-opacity-100 hov-text-primary fs-12 d-inline-block py-2 pl-2">{{ translate('Registration') }}</a>
                                 </span>
                             @endauth
                             <div class="hover-user-top-menu position-absolute top-100 left-4 right-2 z-3">
