@@ -355,7 +355,8 @@
             <!-- Contacts -->
             <div class="{{ $col_values }}">
                 <div class="text-center text-sm-left mt-4">
-                    <h4 class="fs-14 text-secondary text-uppercase fw-700 mb-3">{{ translate('Contacts') }}</h4>
+                    <div class="line"></div>
+                    <h4 class="fs-14 text-dark text-uppercase fw-700 mb-3">{{ translate('Contacts') }}</h4>
                     <ul class="list-unstyled">
                         <li class="mb-2">
                             <p class="fs-13 text-secondary mb-1">{{ translate('Address') }}</p>
@@ -383,7 +384,8 @@
             <!-- Quick links -->
             <div class="{{ $col_values }}">
                 <div class="text-center text-sm-left mt-4">
-                    <h4 class="fs-14 text-secondary text-uppercase fw-700 mb-3">
+                    <div class="line"></div>
+                    <h4 class="fs-14 text-dark text-uppercase fw-700 mb-3">
                         {{ get_setting('widget_one', null, App::getLocale()) }}
                     </h4>
                     <ul class="list-unstyled">
@@ -409,7 +411,8 @@
             <!-- My Account -->
             <div class="{{ $col_values }}">
                 <div class="text-center text-sm-left mt-4">
-                    <h4 class="fs-14 text-secondary text-uppercase fw-700 mb-3">{{ translate('My Account') }}</h4>
+                    <div class="line"></div>
+                    <h4 class="fs-14 text-dark text-uppercase fw-700 mb-3">{{ translate('My Account') }}</h4>
                     <ul class="list-unstyled">
                         @if (Auth::check())
                             <li class="mb-2">
@@ -458,7 +461,8 @@
                     <div class="text-center text-sm-left mt-4">
                         <!-- Seller -->
                         @if (get_setting('vendor_system_activation') == 1)
-                            <h4 class="fs-14 text-secondary text-uppercase fw-700 mb-3">{{ translate('Seller Zone') }}
+                            <div class="line"></div>
+                            <h4 class="fs-14 text-dark text-uppercase fw-700 mb-3">{{ translate('Seller Zone') }}
                             </h4>
                             <ul class="list-unstyled">
                                 <li class="mb-2">
