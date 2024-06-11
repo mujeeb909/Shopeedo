@@ -1,0 +1,34 @@
+.circle {
+    background: black;
+    border-radius: 50%;
+    width: 32px; /* Adjusted width to ensure the circle */
+    height: 32px; /* Adjusted height to ensure the circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 8px;
+}
+.nav-links-color a {
+    color: black;
+}
+
+.shopping-cart p {
+    padding: 0;
+    margin: 0;
+}
+.price {
+    color: #d51863;
+}
+
+.line {
+    background-color: black;
+    width: 44px;
+    height: 2px;
+    margin-bottom: 5px;
+}
+
+.feature-products p {
+    padding: 0;
+    margin: 0;
+}

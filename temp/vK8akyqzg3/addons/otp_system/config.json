@@ -1,0 +1,131 @@
+{
+	"name": "OTP",
+	"unique_identifier": "otp_system",
+	"version": "2.5",
+	"minimum_item_version": "8.3",
+	"addon_banner": "otp_system.png",
+	"directory": [
+		{
+			"name": [
+				"resources/views/otp_systems",
+				"resources/views/backend/otp_systems",
+				"resources/views/backend/otp_systems/configurations",
+				"resources/views/backend/otp_systems/configurations/partials",
+				"resources/views/backend/otp_systems/sms",
+				"resources/views/otp_systems/frontend",
+				"resources/views/otp_systems/frontend/auth",
+				"resources/views/otp_systems/frontend/auth/boxed",
+				"resources/views/otp_systems/frontend/auth/focused",
+				"resources/views/otp_systems/frontend/auth/free"
+			]
+		}
+	],
+	"sql_file": "",
+	"files": [
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/index.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/index.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/activation.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/activation.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/sms_templates.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/sms_templates.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/twillo.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/twillo.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/nexmo.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/nexmo.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/fast2sms.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/fast2sms.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/mimo.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/mimo.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/mimsms.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/mimsms.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/msegat.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/msegat.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/sparrow.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/sparrow.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/ssl_wireless.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/ssl_wireless.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/configurations/partials/zender.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/configurations/partials/zender.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/sms/index.blade.php",
+			"update_directory": "resources/views/backend/otp_systems/sms/index.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/frontend/auth/boxed/reset_with_phone.blade.php",
+			"update_directory": "resources/views/otp_systems/frontend/auth/boxed/reset_with_phone.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/frontend/auth/boxed/user_verification.blade.php",
+			"update_directory": "resources/views/otp_systems/frontend/auth/boxed/user_verification.blade.php"
+		},
+
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/frontend/auth/focused/reset_with_phone.blade.php",
+			"update_directory": "resources/views/otp_systems/frontend/auth/focused/reset_with_phone.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/frontend/auth/focused/user_verification.blade.php",
+			"update_directory": "resources/views/otp_systems/frontend/auth/focused/user_verification.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/frontend/auth/free/reset_with_phone.blade.php",
+			"update_directory": "resources/views/otp_systems/frontend/auth/free/reset_with_phone.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/views/otp_systems/frontend/auth/free/user_verification.blade.php",
+			"update_directory": "resources/views/otp_systems/frontend/auth/free/user_verification.blade.php"
+		},
+		{
+			"root_directory": "addons/otp_system/controllers/OTPController.php",
+			"update_directory": "app/Http/Controllers/OTPController.php"
+		},
+		{
+			"root_directory": "addons/otp_system/controllers/SmsController.php",
+			"update_directory": "app/Http/Controllers/SmsController.php"
+		},
+		{
+			"root_directory": "addons/otp_system/controllers/OTPVerificationController.php",
+			"update_directory": "app/Http/Controllers/OTPVerificationController.php"
+		},
+		{
+			"root_directory": "addons/otp_system/controllers/SmsTemplateController.php",
+			"update_directory": "app/Http/Controllers/SmsTemplateController.php"
+		},
+		{
+			"root_directory": "addons/otp_system/utility/MimoUtility.php",
+			"update_directory": "app/Utility/MimoUtility.php"
+		},
+		{
+			"root_directory": "addons/otp_system/utility/SmsUtility.php",
+			"update_directory": "app/Utility/SmsUtility.php"
+		},
+		{
+			"root_directory": "addons/otp_system/assets/otp_system.png",
+			"update_directory": "public/otp_system.png"
+		}
+	]
+}
