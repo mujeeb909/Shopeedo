@@ -40,8 +40,9 @@ class CartController extends Controller
             $carts->toQuery()->update(['shipping_cost' => 0]);
             $carts = $carts->fresh();
         }
+        $categories = Category::with('childrenCategories')->where('parent_id', 0)->orderBy('order_level', 'desc')->get();
 
-        return view('frontend.view_cart', compact('carts'));
+        return view('frontend.view_cart', compact('carts', 'categories'));
     }
 
     public function showCartModal(Request $request)
@@ -59,12 +60,12 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $authUser = auth()->user();
-        if($authUser != null) {
+        if ($authUser != null) {
             $user_id = $authUser->id;
             $data['user_id'] = $user_id;
             $carts = Cart::where('user_id', $user_id)->get();
         } else {
-            if($request->session()->get('temp_user_id')) {
+            if ($request->session()->get('temp_user_id')) {
                 $temp_user_id = $request->session()->get('temp_user_id');
             } else {
                 $temp_user_id = bin2hex(random_bytes(10));
@@ -78,7 +79,7 @@ class CartController extends Controller
         $product = Product::find($request->id);
         $carts = array();
 
-        if($check_auction_in_cart && $product->auction_product == 0) {
+        if ($check_auction_in_cart && $product->auction_product == 0) {
             return array(
                 'status' => 0,
                 'cart_count' => count($carts),
@@ -102,7 +103,7 @@ class CartController extends Controller
         $str = CartUtility::create_cart_variant($product, $request->all());
         $product_stock = $product->stocks->where('variant', $str)->first();
 
-        if($authUser != null) {
+        if ($authUser != null) {
             $user_id = $authUser->id;
             $cart = Cart::firstOrNew([
                 'variation' => $str,
@@ -143,7 +144,7 @@ class CartController extends Controller
 
         CartUtility::save_cart_data($cart, $product, $price, $tax, $quantity);
 
-        if($authUser != null) {
+        if ($authUser != null) {
             $user_id = $authUser->id;
             $carts = Cart::where('user_id', $user_id)->get();
         } else {
@@ -255,7 +256,7 @@ class CartController extends Controller
         }
 
         $coupon_applied = $carts->toQuery()->where('coupon_applied', 1)->first();
-        if($coupon_applied != null){
+        if ($coupon_applied != null) {
             $owner_id = $coupon_applied->owner_id;
             $coupon_code = $coupon_applied->coupon_code;
             $user_carts = $carts->toQuery()->where('owner_id', $owner_id)->get();
@@ -270,8 +271,8 @@ class CartController extends Controller
         }
 
         $carts->toQuery()->update(['status' => 0]);
-        if($product_ids != null){
-            if($coupon_applied != null){
+        if ($product_ids != null) {
+            if ($coupon_applied != null) {
                 $active_user_carts = $user_carts->toQuery()->whereIn('product_id', $product_ids)->get();
                 if (count($active_user_carts) > 0) {
                     $active_user_carts->toQuery()->update(
