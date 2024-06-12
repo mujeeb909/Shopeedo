@@ -17,7 +17,7 @@
                     <div class="px-3 h-100" style="padding-top: 12px;padding-bottom: 12px; width:270px; cursor: pointer;">
                         <div class="d-flex align-items-center justify-content-between p-2">
                             <div>
-                                <span class="fw-700 fs-16 mr-3">{{ translate('All CATEGORIE') }}</span>
+                                <span class="fw-700 fs-16 mr-3">{{ translate('All CATEGORIES') }}</span>
                                 <a href="{{ route('categories.all') }}" class="text-reset">
                                 </a>
                             </div>
