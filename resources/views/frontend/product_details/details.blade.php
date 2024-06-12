@@ -34,10 +34,11 @@
         @endif
     </div>
     <div class="row align-items-center">
-        @if(get_setting('product_query_activation') == 1)
+        @if (get_setting('product_query_activation') == 1)
             <!-- Ask about this product -->
             <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 mb-3">
-                <a href="javascript:void();" onclick="goToView('product_query')" class="text-primary fs-14 fw-600 d-flex">
+                <a href="javascript:void();" onclick="goToView('product_query')"
+                    class="text-primary fs-14 fw-600 d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
                         <g id="Group_25571" data-name="Group 25571" transform="translate(-975 -411)">
                             <g id="Path_32843" data-name="Path 32843" transform="translate(975 411)" fill="#fff">
@@ -50,7 +51,8 @@
                             </g>
                             <path id="Path_32842" data-name="Path 32842"
                                 d="M28.738,30.935a1.185,1.185,0,0,1-1.185-1.185,3.964,3.964,0,0,1,.942-2.613c.089-.095.213-.207.361-.344.735-.658,2.252-2.032,2.252-3.555a2.228,2.228,0,0,0-2.37-2.37,2.228,2.228,0,0,0-2.37,2.37,1.185,1.185,0,1,1-2.37,0,4.592,4.592,0,0,1,4.74-4.74,4.592,4.592,0,0,1,4.74,4.74c0,2.577-2.044,4.432-3.028,5.333l-.284.255a1.89,1.89,0,0,0-.243.948A1.185,1.185,0,0,1,28.738,30.935Zm0,3.561a1.185,1.185,0,0,1-.835-2.026,1.226,1.226,0,0,1,1.671,0,1.061,1.061,0,0,1,.148.184,1.345,1.345,0,0,1,.113.2,1.41,1.41,0,0,1,.065.225,1.138,1.138,0,0,1,0,.462,1.338,1.338,0,0,1-.065.219,1.185,1.185,0,0,1-.113.207,1.06,1.06,0,0,1-.148.184A1.185,1.185,0,0,1,28.738,34.5Z"
-                                transform="translate(962.004 400.504)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                                transform="translate(962.004 400.504)"
+                                fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
                         </g>
                     </svg>
                     <span class="ml-2 text-primary animate-underline-blue">{{ translate('Product Inquiry') }}</span>
@@ -60,6 +62,8 @@
         <div class="col mb-3">
             @if ($detailedProduct->auction_product != 1)
                 <div class="d-flex">
+                    <span class=" mr-3 price animate-underline-blue">{{ translate('Product Inquiry') }}</span>
+
                     <!-- Add to wishlist button -->
                     <a href="javascript:void(0)" onclick="addToWishList({{ $detailedProduct->id }})"
                         class="mr-3 fs-14 text-dark opacity-60 has-transitiuon hov-opacity-100">
@@ -81,14 +85,14 @@
     <!-- Brand Logo & Name -->
     @if ($detailedProduct->brand != null)
         <div class="d-flex flex-wrap align-items-center mb-3">
-            <span class="text-secondary fs-14 fw-400 mr-4 w-80px">{{ translate('Brand') }}</span><br>
+            <span class=" fs-14 fw-400 mr-4 w-80px">{{ translate('Brand') }}</span><br>
             <a href="{{ route('products.brand', $detailedProduct->brand->slug) }}"
                 class="text-reset hov-text-primary fs-14 fw-700">{{ $detailedProduct->brand->name }}</a>
         </div>
     @endif
 
     <!-- Seller Info -->
-    <div class="d-flex flex-wrap align-items-center">
+    {{-- <div class="d-flex flex-wrap align-items-center">
         <div class="d-flex align-items-center mr-4">
             <!-- Shop Name -->
             @if ($detailedProduct->added_by == 'seller' && get_setting('vendor_system_activation') == 1)
@@ -131,12 +135,12 @@
             $sizeChartId = ($detailedProduct->main_category && $detailedProduct->main_category->sizeChart) ? $detailedProduct->main_category->sizeChart->id : 0;
             $sizeChartName = ($detailedProduct->main_category && $detailedProduct->main_category->sizeChart) ? $detailedProduct->main_category->sizeChart->name : null;
         @endphp
-        @if($sizeChartId != 0)
+        @if ($sizeChartId != 0)
             <div class=" ml-4">
                 <a href="javascript:void(1);" onclick='showSizeChartDetail({{ $sizeChartId }}, "{{ $sizeChartName }}")' class="animate-underline-primary">{{ translate('Show size guide') }}</a>
             </div>
         @endif
-    </div>
+    </div> --}}
 
     <hr>
 
@@ -226,7 +230,7 @@
             @if (home_price($detailedProduct) != home_discounted_price($detailedProduct))
                 <div class="row no-gutters mb-3">
                     <div class="col-sm-2">
-                        <div class="text-secondary fs-14 fw-400">{{ translate('Price') }}</div>
+                        <div class="fs-14 fw-400">{{ translate('Item Price') }}</div>
                     </div>
                     <div class="col-sm-10">
                         <div class="d-flex align-items-center">
@@ -254,9 +258,8 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                         viewBox="0 0 12 12">
                                         <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
-                                            <circle id="Ellipse_39" data-name="Ellipse 39" cx="6"
-                                                cy="6" r="6" transform="translate(973 633)"
-                                                fill="#fff" />
+                                            <circle id="Ellipse_39" data-name="Ellipse 39" cx="6" cy="6"
+                                                r="6" transform="translate(973 633)" fill="#fff" />
                                             <g id="Group_23920" data-name="Group 23920"
                                                 transform="translate(973 633)">
                                                 <path id="Path_28698" data-name="Path 28698"
@@ -301,8 +304,7 @@
                                         viewBox="0 0 12 12">
                                         <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
                                             <circle id="Ellipse_39" data-name="Ellipse 39" cx="6"
-                                                cy="6" r="6" transform="translate(973 633)"
-                                                fill="#fff" />
+                                                cy="6" r="6" transform="translate(973 633)" fill="#fff" />
                                             <g id="Group_23920" data-name="Group 23920"
                                                 transform="translate(973 633)">
                                                 <path id="Path_28698" data-name="Path 28698"
@@ -329,7 +331,7 @@
     @endif
 
     @if ($detailedProduct->auction_product != 1)
-        <form id="option-choice-form">
+        <form id="option-choice-form" style="">
             @csrf
             <input type="hidden" name="id" value="{{ $detailedProduct->id }}">
 
@@ -388,8 +390,9 @@
                     </div>
                 @endif
 
+
                 <!-- Quantity + Add to cart -->
-                <div class="row no-gutters mb-3">
+                <div class="row no-gutters mb-3" style="display: none">
                     <div class="col-sm-2">
                         <div class="text-secondary fs-14 fw-400 mt-2">{{ translate('Quantity') }}</div>
                     </div>
@@ -432,7 +435,7 @@
             @endif
 
             <!-- Total Price -->
-            <div class="row no-gutters pb-3 d-none" id="chosen_price_div">
+            <div class="row no-gutters pb-3 d-none" id="chosen_price_div" style="display: none">
                 <div class="col-sm-2">
                     <div class="text-secondary fs-14 fw-400 mt-1">{{ translate('Total Price') }}</div>
                 </div>
@@ -473,8 +476,22 @@
             </div>
         @endif
     @else
+        {{-- Product Details --}}
+        <div>
+            <h6>Product Details</h6>
+            <ul style="padding-left:17px">
+                <div class="tab-pane fade active show" id="tab_default_1">
+                    <div class="">
+                        <div class="mw-100 overflow-hidden text-left aiz-editor-data">
+                            <?php echo $detailedProduct->getTranslation('description'); ?>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+
         <!-- Add to cart & Buy now Buttons -->
-        <div class="mt-3">
+        {{-- <div class="mt-3">
             @if ($detailedProduct->digital == 0)
                 @if ($detailedProduct->external_link != null)
                     <a type="button" class="btn btn-primary buy-now fw-600 add-to-cart px-4 rounded-0"
@@ -506,16 +523,12 @@
                     <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                 </button>
             @endif
-        </div>
+        </div> --}}
 
         <!-- Promote Link -->
-        <div class="d-table width-100 mt-3">
+        {{-- <div class="d-table width-100 mt-3">
             <div class="d-table-cell">
-                @if (Auth::check() &&
-                        addon_is_activated('affiliate_system') &&
-                        get_affliate_option_status() &&
-                        Auth::user()->affiliate_user != null &&
-                        Auth::user()->affiliate_user->status)
+                @if (Auth::check() && addon_is_activated('affiliate_system') && get_affliate_option_status() && Auth::user()->affiliate_user != null && Auth::user()->affiliate_user->status)
                     @php
                         if (Auth::check()) {
                             if (Auth::user()->referral_code == null) {
@@ -533,10 +546,10 @@
                     </div>
                 @endif
             </div>
-        </div>
+        </div> --}}
 
         <!-- Refund -->
-        @php
+        {{-- @php
             $refund_sticker = get_setting('refund_sticker');
         @endphp
         @if (addon_is_activated('refund_request'))
@@ -560,7 +573,7 @@
                     @endif
                 </div>
             </div>
-        @endif
+        @endif --}}
 
         <!-- Seller Guarantees -->
         @if ($detailedProduct->digital == 1)
@@ -582,12 +595,12 @@
     @endif
 
     <!-- Share -->
-    <div class="row no-gutters mt-4">
+    {{-- <div class="row no-gutters mt-4">
         <div class="col-sm-2">
             <div class="text-secondary fs-14 fw-400 mt-2">{{ translate('Share') }}</div>
         </div>
         <div class="col-sm-10">
             <div class="aiz-share"></div>
         </div>
-    </div>
+    </div> --}}
 </div>

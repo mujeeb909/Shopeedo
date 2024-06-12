@@ -8,18 +8,17 @@
 
 @section('meta')
     @php
-        $availability = "out of stock";
+        $availability = 'out of stock';
         $qty = 0;
-        if($detailedProduct->variant_product) {
+        if ($detailedProduct->variant_product) {
             foreach ($detailedProduct->stocks as $key => $stock) {
                 $qty += $stock->qty;
             }
-        }
-        else {
+        } else {
             $qty = optional($detailedProduct->stocks->first())->qty;
         }
-        if($qty > 0){
-            $availability = "in stock";
+        if ($qty > 0) {
+            $availability = 'in stock';
         }
     @endphp
     <!-- Schema.org markup for Google+ -->
@@ -32,7 +31,8 @@
     <meta name="twitter:site" content="@publisher_handle">
     <meta name="twitter:title" content="{{ $detailedProduct->meta_title }}">
     <meta name="twitter:description" content="{{ $detailedProduct->meta_description }}">
-    <meta name="twitter:creator" content="@author_handle">
+    <meta name="twitter:creator"
+        content="@author_handle">
     <meta name="twitter:image" content="{{ uploaded_asset($detailedProduct->meta_img) }}">
     <meta name="twitter:data1" content="{{ single_price($detailedProduct->unit_price) }}">
     <meta name="twitter:label1" content="Price">
@@ -61,13 +61,17 @@
             <div class="bg-white py-3">
                 <div class="row">
                     <!-- Product Image Gallery -->
-                    <div class="col-xl-5 col-lg-6 mb-4">
+                    <div class="col-xl-3 col-lg-4 mb-4">
                         @include('frontend.product_details.image_gallery')
                     </div>
 
                     <!-- Product Details -->
-                    <div class="col-xl-7 col-lg-6">
+                    <div class="col-xl-6 col-lg-4">
                         @include('frontend.product_details.details')
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4">
+                        <div class=" border border-primary p-2 rounded-3 max-w-300px">  @include('frontend.product_details.right_details') </div>
                     </div>
                 </div>
             </div>
@@ -203,7 +207,7 @@
     </div>
 
     <!-- Bid Modal -->
-    @if($detailedProduct->auction_product == 1)
+    @if ($detailedProduct->auction_product == 1)
         @php 
             $highest_bid = $detailedProduct->bids->max('amount');
             $min_bid_amount = $highest_bid != null ? $highest_bid+1 : $detailedProduct->starting_bid; 
@@ -212,7 +216,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ translate('Bid For Product') }} <small>({{ translate('Min Bid Amount: ').$min_bid_amount }})</small> </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{ translate('Bid For Product') }} <small>({{ translate('Min Bid Amount: ') . $min_bid_amount }})</small> </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
@@ -222,7 +226,7 @@
                             <input type="hidden" name="product_id" value="{{ $detailedProduct->id }}">
                             <div class="form-group">
                                 <label class="form-label">
-                                    {{translate('Place Bid Price')}}
+                                    {{ translate('Place Bid Price') }}
                                     <span class="text-danger">*</span>
                                 </label>
                                 <div class="form-group">
@@ -343,7 +347,7 @@
             @if (isCustomer() || isSeller())
                 $('#bid_for_detail_product').modal('show');
           	@elseif (isAdmin())
-                AIZ.plugins.notify('warning', '{{ translate("Sorry, Only customers & Sellers can Bid.") }}');
+                AIZ.plugins.notify('warning', '{{ translate('Sorry, Only customers & Sellers can Bid.') }}');
             @else
                 $('#login_modal').modal('show');
             @endif
@@ -363,32 +367,24 @@
                         AIZ.extra.inputRating();
                     });
                 @else
-                    AIZ.plugins.notify('warning', '{{ translate("Sorry, You need to buy this product to give review.") }}');
+                    AIZ.plugins.notify('warning', '{{ translate('Sorry, You need to buy this product to give review.') }}');
                 @endif
             @elseif (Auth::check() && !isCustomer())
-                AIZ.plugins.notify('warning', '{{ translate("Sorry, Only customers can give review.") }}');
+                AIZ.plugins.notify('warning', '{{ translate('Sorry, Only customers can give review.') }}');
             @else
-                $('#login_modal').modal('show');
-            @endif
+                $('#login_modal').modal('show'); @endif
         }
 
         function showSizeChartDetail(id, name){
             $('#size-chart-show-modal .modal-title').html('');
             $('#size-chart-show-modal .modal-body').html('');
             if (id == 0) {
-                AIZ.plugins.notify('warning', '{{ translate("Sorry, There is no size guide found for this product.") }}');
+                AIZ.plugins.notify('warning', '{{ translate('Sorry, There is no size guide found for this product.') }}');
                 return false;
             }
             $.ajax({
                 type: "GET",
-                url: "{{ route('size-charts-show', '') }}/"+id,
-                data: {},
-                success: function(data) {
-                    $('#size-chart-show-modal .modal-title').html(name);
-                    $('#size-chart-show-modal .modal-body').html(data);
-                    $('#size-chart-show-modal').modal('show');
-                }
-            });
-        }
-    </script>
+        url: "{{ route('size-charts-show', '') }}/" +id, data: {}, success: function(data) { $('#size-chart-show-modal
+        .modal-title').html(name); $('#size-chart-show-modal .modal-body').html(data);
+        $('#size-chart-show-modal').modal('show'); } }); } </script>
 @endsection
