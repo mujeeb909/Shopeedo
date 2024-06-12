@@ -13,18 +13,18 @@
     <div class="home-banner-area mb-3" style="">
         <div class="container">
             <div class="d-flex flex-wrap position-relative">
-                <div class="d-none d-xl-block all-category has-transition" id="category-menu-bar">
+                <div class="d-none d-xl-block all-category has-transition" style="color:black;">
                     <div class="px-3 h-100" style="padding-top: 12px;padding-bottom: 12px; width:270px; cursor: pointer;">
-                        <div class="d-flex align-items-center justify-content-between bg-black p-2">
+                        <div class="d-flex align-items-center justify-content-between p-2">
                             <div>
-                                <span class="fw-700 fs-16 text-white mr-3 bg-black">{{ translate('All CATEGORIES') }}</span>
+                                <span class="fw-700 fs-16 mr-3">{{ translate('All CATEGORIES') }}</span>
                                 <a href="{{ route('categories.all') }}" class="text-reset">
-                                    {{-- <span
-                                        class="d-none d-lg-inline-block text-white hov-opacity-80">({{ translate('See All') }})</span> --}}
                                 </a>
                             </div>
-                            <i class="las la-angle-down text-white has-transition" id="category-menu-bar-icon"
-                                style="font-size: 1.2rem !important"></i>
+
+                        </div>
+                        <div>
+                            @include('frontend.' . get_setting('homepage_select') . '.partials.category_menu')
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                                 $home_slider_links = get_setting('home_slider_links', null, $lang);
                             @endphp
                             @foreach ($sliders as $key => $slider)
-                                <div class="carousel-box">
+                                <div class="carousel-box" style="max-height:350px">
                                     <a
                                         href="{{ isset(json_decode($home_slider_links, true)[$key]) ? json_decode($home_slider_links, true)[$key] : '' }}">
                                         <!-- Image -->
@@ -1350,7 +1350,7 @@
 
                             <div style="margin-left: 8px">
                                 <h6>FREE RETURN</h6>
-                                <p>30 days money back guarantee</p>
+                                <p>14 days money back guarantee</p>
                             </div>
 
                         </div>

@@ -92,9 +92,9 @@
                             <a href="">Logistic Partner</a>
                             <a href="">Affliate Partner</a>
                             <a href="{{ route('shops.create') }}"
-                                class=" fs-12 pr-3 d-inline-block border-width-2">{{ translate('Become a Seller !') }}</a>
+                                class=" fs-12 d-inline-block border-width-2">{{ translate('Become a Seller') }}</a>
                             <a href="{{ route('seller.login') }}"
-                                class="fs-12 pl-3 d-inline-block">{{ translate('Login to Seller') }}</a>
+                                class="fs-12 d-inline-block">{{ translate('Login to Seller') }}</a>
 
                         </div>
                     </div>
@@ -493,7 +493,7 @@
                                 class="stop-propagation d-flex align-items-center">
                                 <div class="d-flex position-relative align-items-center w-100"
                                     style="border: 1px solid;border-radius: 45px;">
-                                    <div class="search-category-box">
+                                    <div class="search-category-box" style="padding: 12px;">
                                         <select class="form-select border-0 bg-transparent fs-14" name="category">
                                             <option value="" disabled selected>Select Category</option>
                                             @foreach ($categories as $category)
@@ -508,9 +508,10 @@
                                         @isset($query) value="{{ $query }}" @endisset
                                         placeholder="Search Products..." autocomplete="off">
                                     <button type="submit" class="btn btn-dark"
-                                        style="border-radius:100%;width: 53.52px;height: 48.52px;">
-                                        <svg id="Group_723" data-name="Group 723" xmlns="http://www.w3.org/2000/svg"
-                                            width="18.44" height="18.34" viewBox="0 0 20.001 20">
+                                        style="border-radius: 100%;width: 48.52px;height: 46.52px;">
+                                        <svg style="margin-left: -4px;" id="Group_723" data-name="Group 723"
+                                            xmlns="http://www.w3.org/2000/svg" width="18.44" height="18.34"
+                                            viewBox="0 0 20.001 20">
                                             <path id="Path_3090" data-name="Path 3090"
                                                 d="M9.847,17.839a7.993,7.993,0,1,1,7.993-7.993A8,8,0,0,1,9.847,17.839Zm0-14.387a6.394,6.394,0,1,0,6.394,6.394A6.4,6.4,0,0,0,9.847,3.453Z"
                                                 transform="translate(-1.854 -1.854)" fill="#fff" />
