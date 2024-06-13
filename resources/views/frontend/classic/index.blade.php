@@ -17,7 +17,7 @@
                     <div class="px-3 h-100" style="padding-top: 12px;padding-bottom: 12px; width:270px; cursor: pointer;">
                         <div class="d-flex align-items-center justify-content-between p-2">
                             <div>
-                                <span class="fw-700 fs-16 mr-3">{{ translate('All CATEGORIES') }}</span>
+                                <span class="fw-700 fs-16 mr-3">{{ translate('All Categories') }}</span>
                                 <a href="{{ route('categories.all') }}" class="text-reset">
                                 </a>
                             </div>
@@ -1349,7 +1349,7 @@
                             </svg>
 
                             <div style="margin-left: 8px">
-                                <h6>FREE RETURN</h6>
+                                <h6>Free Return</h6>
                                 <p>14 days money back guarantee</p>
                             </div>
 
@@ -1412,7 +1412,7 @@
                                     stroke-width="2" stroke-miterlimit="10" />
                             </svg>
                             <div style="margin-left: 8px">
-                                <h6>FREE SHIPPING</h6>
+                                <h6>Free Shipping</h6>
                                 <p>Free shipping on all orders</p>
                             </div>
 

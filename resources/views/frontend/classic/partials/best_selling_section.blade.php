@@ -6,11 +6,11 @@
         <div class="container">
             <!-- Top Section -->
             <div class="d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
-                <!-- Title -->
-                <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0">
-                    <span class="">{{ translate('Best Selling Products') }}</span>
-                    <div class="line"></div>
-                </h3>
+                 <!-- Title -->
+                <h6 class="">
+                   <span class="">{{ translate('Best Selling Products') }}</span>
+                    <div class="line mt-1"></div>
+                </h6>
                 <!-- Links -->
                 <div class="d-flex">
                     <a type="button" class="arrow-prev slide-arrow link-disable text-secondary mr-2"
