@@ -87,7 +87,7 @@
         <div class="d-flex flex-wrap align-items-center mb-3">
             <span class=" fs-14 fw-400 mr-4 w-80px">{{ translate('Brand') }}</span><br>
             <a href="{{ route('products.brand', $detailedProduct->brand->slug) }}"
-                class="text-reset hov-text-primary fs-14 fw-700">{{ $detailedProduct->brand->name }}</a>
+                class="text-reset hov-text-primary fs-14 fw-700 ml-2">{{ $detailedProduct->brand->name }}</a>
         </div>
     @endif
 
@@ -249,7 +249,7 @@
                             <!-- Discount percentage -->
                             @if (discount_in_percentage($detailedProduct) > 0)
                                 <span class="bg-primary ml-2 fs-11 fw-700 text-white w-35px text-center p-1"
-                                    style="padding-top:2px;padding-bottom:2px;">-{{ discount_in_percentage($detailedProduct) }}%</span>
+                                    style="padding-top:2px;padding-bottom:2px;">+{{ discount_in_percentage($detailedProduct) }}%</span>
                             @endif
                             <!-- Club Point -->
                             @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
@@ -482,7 +482,7 @@
             <ul style="padding-left:17px">
                 <div class="tab-pane fade active show" id="tab_default_1">
                     <div class="">
-                        <div class="mw-100 overflow-hidden text-left aiz-editor-data">
+                        <div class="mw-100 overflow-hidden text-left aiz-editor-data" style="">
                             <?php echo $detailedProduct->getTranslation('description'); ?>
                         </div>
                     </div>
