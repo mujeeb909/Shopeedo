@@ -247,12 +247,12 @@
                 <!-- Quantity + Add to cart -->
                 <div class="row no-gutters mb-3">
                     <div class="col-sm-2">
-                        <div class=" fs-14 fw-400 mt-2">{{ translate('Quantity') }}</div>
+                        <div class=" fs-14 fw-400 mt-2 ">{{ translate('Quantity') }}</div>
                     </div>
                     <div class="col-sm-10">
                         <div class="product-quantity d-flex align-items-center">
                             <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
-                                <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
+                                <button class="btn col-auto btn-icon btn-sm btn-light rounded-0 ml-2" type="button"
                                     data-type="minus" data-field="quantity" disabled="">
                                     <i class="las la-minus"></i>
                                 </button>
@@ -289,10 +289,10 @@
 
             <!-- Total Price -->
             <div class="row no-gutters pb-3 d-none" id="chosen_price_div">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div class=" fs-14 fw-400 mt-1">{{ translate('Total Price') }}</div>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <div class="product-price">
                         <strong id="chosen_price" class="fs-20 fw-700 text-primary">
 
@@ -478,7 +478,8 @@
           </div>
       </div> --}}
 
-        <div class="ml-2">
+      {{-- Addresses --}}
+        <div class="ml-2 mt-4">
             <div class="info-section">
                 <h2>
                     Delivery Address
@@ -511,16 +512,16 @@
             @endphp
             @if (addon_is_activated('refund_request'))
                 <div class="row no-gutters mt-3">
-                    <div class="col-sm-2">
+                    <div class="col-12">
                         <div class=" fs-14 fw-400 mt-2">{{ translate('Refund') }}</div>
                     </div>
-                    <div class="col-sm-10">
+                    <div class="col-12">
                         @if ($detailedProduct->refundable == 1)
-                            <a href="{{ route('returnpolicy') }}" target="_blank">
+                            <a href="{{ route('returnpolicy') }}" target="_blank" style="ml-1">
                                 @if ($refund_sticker != null)
                                     <img src="{{ uploaded_asset($refund_sticker) }}" height="36">
                                 @else
-                                    <img src="{{ static_asset('assets/img/refund-sticker.jpg') }}" height="36">
+                                    <img src="{{ static_asset('assets/img/refund-sticker_new.png') }}" height="36">
                                 @endif
                             </a>
                             {{-- <a href="{{ route('returnpolicy') }}" class="text-blue hov-text-primary fs-14 ml-3"

@@ -1,7 +1,7 @@
 <a href="{{ route('wishlists.index') }}" class="d-flex align-items-center text-dark" data-toggle="tooltip"
     data-title="{{ translate('Wishlist') }}" data-placement="top">
     <span class="position-relative d-inline-block">
-        <svg xmlns="http://www.w3.org/2000/svg" width="21.6" height="19.1" viewBox="0 0 16 14.4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16.668" height="13" viewBox="0 0 16 14.4">
             <g id="_51a3dbe0e593ba390ac13cba118295e4" data-name="51a3dbe0e593ba390ac13cba118295e4"
                 transform="translate(-3.05 -4.178)">
                 <path id="Path_32649" data-name="Path 32649"

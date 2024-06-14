@@ -73,7 +73,12 @@
                     <!-- Add to compare button -->
                     <a href="javascript:void(0)" onclick="addToCompare({{ $detailedProduct->id }})"
                         class="fs-14 text-dark opacity-60 has-transitiuon hov-opacity-100">
-                        <i class="las la-sync mr-1"></i>
+                        {{-- <i class="las la-sync mr-1"></i> --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16.668" height="13" viewBox="0 0 16 16">
+                            <path id="_9f8e765afedd47ec9e49cea83c37dfea" data-name="9f8e765afedd47ec9e49cea83c37dfea"
+                                d="M18.037,5.547v.8a.8.8,0,0,1-.8.8H7.221a.4.4,0,0,0-.4.4V9.216a.642.642,0,0,1-1.1.454L2.456,6.4a.643.643,0,0,1,0-.909L5.723,2.227a.642.642,0,0,1,1.1.454V4.342a.4.4,0,0,0,.4.4H17.234a.8.8,0,0,1,.8.8Zm-3.685,4.86a.642.642,0,0,0-1.1.454v1.661a.4.4,0,0,1-.4.4H2.84a.8.8,0,0,0-.8.8v.8a.8.8,0,0,0,.8.8H12.854a.4.4,0,0,1,.4.4V17.4a.642.642,0,0,0,1.1.454l3.267-3.268a.643.643,0,0,0,0-.909Z"
+                                transform="translate(-2.037 -2.038)" fill="#ACACB1" />
+                        </svg>
                         {{ translate('Add to Compare') }}
                     </a>
                 </div>
@@ -87,7 +92,7 @@
         <div class="d-flex flex-wrap align-items-center mb-3">
             <span class=" fs-14 fw-400 mr-4 w-80px">{{ translate('Brand') }}</span><br>
             <a href="{{ route('products.brand', $detailedProduct->brand->slug) }}"
-                class="text-reset hov-text-primary fs-14 fw-700">{{ $detailedProduct->brand->name }}</a>
+                class="text-reset hov-text-primary fs-14 fw-700 ml-2">{{ $detailedProduct->brand->name }}</a>
         </div>
     @endif
 
@@ -249,7 +254,7 @@
                             <!-- Discount percentage -->
                             @if (discount_in_percentage($detailedProduct) > 0)
                                 <span class="bg-primary ml-2 fs-11 fw-700 text-white w-35px text-center p-1"
-                                    style="padding-top:2px;padding-bottom:2px;">-{{ discount_in_percentage($detailedProduct) }}%</span>
+                                    style="padding-top:2px;padding-bottom:2px;">+{{ discount_in_percentage($detailedProduct) }}%</span>
                             @endif
                             <!-- Club Point -->
                             @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
@@ -482,7 +487,7 @@
             <ul style="padding-left:17px">
                 <div class="tab-pane fade active show" id="tab_default_1">
                     <div class="">
-                        <div class="mw-100 overflow-hidden text-left aiz-editor-data">
+                        <div class="mw-100 overflow-hidden text-left aiz-editor-data" style="">
                             <?php echo $detailedProduct->getTranslation('description'); ?>
                         </div>
                     </div>
