@@ -2631,3 +2631,9 @@ if (!function_exists('timezones')) {
         );
     }
 }
+
+function getCategaries()
+{
+    $categories = Category::with('childrenCategories')->where('parent_id', 0)->orderBy('order_level', 'desc')->get();
+    return $categories;
+}
