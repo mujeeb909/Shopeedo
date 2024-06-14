@@ -65,7 +65,7 @@
         $flash_deal = get_featured_flash_deal();
     @endphp
     @if ($flash_deal != null)
-        <section class="mb-2 mb-md-3 mt-2 mt-md-3" id="flash_deal" style="display: none">
+        <section class="mb-2 mb-md-3 mt-2 mt-md-3" id="flash_deal" style="display:none;">
             <div class="container">
                 <!-- Top Section -->
                 <div class="d-flex flex-wrap mb-2 mb-md-3 align-items-baseline justify-content-between">
@@ -81,21 +81,21 @@
                     </h3>
                     <!-- Links -->
                     {{-- <div>
-                        <div class="text-dark d-flex align-items-center mb-0">
-                            <a href="{{ route('flash-deals') }}"
-                                class="fs-10 fs-md-12 fw-700 text-reset has-transition opacity-60 hov-opacity-100 hov-text-primary animate-underline-primary mr-3">{{ translate('View All Flash Sale') }}</a>
-                            <span class=" border-left border-soft-light border-width-2 pl-3">
-                                <a href="{{ route('flash-deal-details', $flash_deal->slug) }}"
-                                    class="fs-10 fs-md-12 fw-700 text-reset has-transition opacity-60 hov-opacity-100 hov-text-primary animate-underline-primary">{{ translate('View All Products from This Flash Sale') }}</a>
-                            </span>
-                        </div>
-                    </div> --}}
+                    <div class="text-dark d-flex align-items-center mb-0">
+                        <a href="{{ route('flash-deals') }}"
+                            class="fs-10 fs-md-12 fw-700 text-reset has-transition opacity-60 hov-opacity-100 hov-text-primary animate-underline-primary mr-3">{{ translate('View All Flash Sale') }}</a>
+                        <span class=" border-left border-soft-light border-width-2 pl-3">
+                            <a href="{{ route('flash-deal-details', $flash_deal->slug) }}"
+                                class="fs-10 fs-md-12 fw-700 text-reset has-transition opacity-60 hov-opacity-100 hov-text-primary animate-underline-primary">{{ translate('View All Products from This Flash Sale') }}</a>
+                        </span>
+                    </div>
+                </div> --}}
                 </div>
 
                 <!-- Countdown for small device -->
                 {{-- <div class="bg-white mb-3 d-md-none">
-                    <div class="aiz-count-down-circle" end-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
-                </div> --}}
+                <div class="aiz-count-down-circle" end-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
+            </div> --}}
 
                 <div class="row gutters-5 gutters-md-16">
                     <!-- Flash Deals Baner & Countdown -->
@@ -294,22 +294,25 @@
             </div>
         </div>
     @endif
+
+
     <div class="container">
         <h6>Hot Deal Today</h6>
         <div class="line"></div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 pt-4 feature-products">
-                <div class="d-flex flex-column align-items-center border border-dark pt-5"
-                    >
-                    <div class="px-md-3 d-md-block " style="max-width: 300px">
-                        <div >
-                            <div class="aiz-count-down-circle"
-                                end-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}" ></div>
-                        </div>
-                    </div>
-                    {{-- <img src="{{ static_asset('assets/img/tv.jpg') }}" width="200" alt=""> --}}
 
-                    {{-- <div class="h-100 w-100 "
+        <div class="row">
+            @if ($flash_deal != null)
+                <div class="col-lg-3 col-md-6 pt-4 feature-products">
+                    <div class="d-flex flex-column align-items-center border border-dark pt-5">
+                        <div class="px-md-3 d-md-block " style="max-width: 300px">
+                            <div>
+                                <div class="aiz-count-down-circle"
+                                    end-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
+                            </div>
+                        </div>
+                        {{-- <img src="{{ static_asset('assets/img/tv.jpg') }}" width="200" alt=""> --}}
+
+                        {{-- <div class="h-100 w-100 "
                             style="background-image: url('{{ uploaded_asset($flash_deal->banner) }}'); background-size: cover; background-position: center center;">
                             <div class="py-5 px-md-3 px-xl-5 d-none d-md-block">
                                 <div >
@@ -318,43 +321,48 @@
                                 </div>
                             </div>
                   </div> --}}
-                  {{-- <div>
+                        {{-- <div>
                     <img src="{{ get_image($flash_deal_product->product->thumbnail) }}" alt="">
 
                   </div> --}}
-                  <div
-                  class="h-100px h-md-200px h-lg-auto flash-deal-item position-relative text-center has-transition hov-shadow-out z-1">
-                  <a href="{{ $product_url }}"
-                      class="d-block py-md-3 overflow-hidden hov-scale-img"
-                      title="{{ $flash_deal_product->product->getTranslation('name') }}">
-                      <!-- Image -->
-                      <img src="{{ get_image($flash_deal_product->product->thumbnail) }}"
-                          class="lazyload h-60px h-md-100px h-lg-140px mw-100 mx-auto has-transition"
-                          alt="{{ $flash_deal_product->product->getTranslation('name') }}"
-                          onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
-                      <!-- Price -->
-                      <div>
-                      <span>{{ $flash_deal_product->product->getTranslation('name') }}</span>
+                        <div
+                            class="h-100px h-md-200px h-lg-auto flash-deal-item position-relative text-center has-transition hov-shadow-out z-1">
+                            <a href="{{ $product_url }}" class="d-block py-md-3 overflow-hidden hov-scale-img"
+                                title="{{ $flash_deal_product->product->getTranslation('name') }}">
+                                <!-- Image -->
+                                <img src="{{ get_image($flash_deal_product->product->thumbnail) }}"
+                                    class="lazyload h-60px h-md-100px h-lg-140px mw-100 mx-auto has-transition"
+                                    alt="{{ $flash_deal_product->product->getTranslation('name') }}"
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                <!-- Price -->
+                                <div>
+                                    <span>{{ $flash_deal_product->product->getTranslation('name') }}</span>
 
-                      </div>
-                      <div
-                          class="fs-10 fs-md-14 mt-md-3 text-center h-md-48px has-transition overflow-hidden pt-md-4 flash-deal-price lh-1-5">
-                         
-                          <span
-                              class="d-block text-primary fw-700">{{ home_discounted_base_price($flash_deal_product->product) }}</span>
-                          @if (home_base_price($flash_deal_product->product) != home_discounted_base_price($flash_deal_product->product))
-                              <del
-                                  class="d-block fw-400 text-secondary">{{ home_base_price($flash_deal_product->product) }}</del>
-                          @endif
-                      </div>
-                  </a>
-              </div>
+                                </div>
+                                <div
+                                    class="fs-10 fs-md-14 mt-md-3 text-center h-md-48px has-transition overflow-hidden pt-md-4 flash-deal-price lh-1-5">
 
-                    {{-- <p>Product 002</p>
+                                    <span
+                                        class="d-block text-primary fw-700">{{ home_discounted_base_price($flash_deal_product->product) }}</span>
+                                    @if (home_base_price($flash_deal_product->product) != home_discounted_base_price($flash_deal_product->product))
+                                        <del
+                                            class="d-block fw-400 text-secondary">{{ home_base_price($flash_deal_product->product) }}</del>
+                                    @endif
+                                </div>
+                            </a>
+                        </div>
+
+                        {{-- <p>Product 002</p>
                     <p class="price">150.000</p>
                     <p>(87)</p> --}}
+                    </div>
                 </div>
+            @else
+            <div class="col-lg-3 col-md-6 pt-4 feature-products">
+                <p>No deals Today</p>
             </div>
+
+            @endif
             <div class="col-lg-9 col-md-6 pt-4">
                 <div class="row ">
 
