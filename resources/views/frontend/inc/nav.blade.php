@@ -5,6 +5,7 @@
         $topbar_banner_medium = get_setting('topbar_banner_medium');
         $topbar_banner_small = get_setting('topbar_banner_small');
         $topbar_banner_asset = uploaded_asset($topbar_banner);
+
     @endphp
     @if ($topbar_banner != null)
         <div class="position-relative top-banner removable-session z-1035 d-none" data-key="top-banner"
@@ -496,7 +497,7 @@
                                     <div class="search-category-box" style="padding: 12px;">
                                         <select class="form-select border-0 bg-transparent fs-14" name="category">
                                             <option value="" disabled selected>Select Category</option>
-                                            @foreach ($categories as $category)
+                                            @foreach (getCategaries() as $category)
                                                 <option value="">{{ $category->name }}</option>
                                             @endforeach
 
