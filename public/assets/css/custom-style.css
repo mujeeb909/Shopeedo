@@ -47,3 +47,36 @@
     color: #666;
     margin: 0;
 }
+
+.top-navbar a:hover {
+    color: #7D9A40;
+    /* font-weight: bold; */
+    transform: scale(1.1);
+}
+
+.service-affects:hover .border {
+    /* background-color: #f0f0f0; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     transform: scale(1.05);
+    /* border-color: #007bff; */
+    transition: all 0.3s ease;
+}
+.service-affects:hover h6,
+.service-affects:hover p {
+    color: #7D9A40;
+    font-weight: bold;
+}
+
+.aiz-count-down-circle #time div {
+    color:white !important;
+    /* background-color: transparent; */
+}
+
+.aiz-count-down-circle {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.aiz-count-down-circle #time .circle {
+    background-color: #7D9A40;
+}
