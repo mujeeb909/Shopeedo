@@ -369,11 +369,12 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::resource('shops', ShopController::class)->middleware('handle-demo-login');
-Route::get('/seller/registration/new', function(){
+
+Route::get('/seller/registration/new', function () {
     return view('auth.free.seller_registration_new');
 });
 
-Route::get('/seller/registration/otp', function(){
+Route::get('/seller/registration/otp', function () {
     return view('auth.free.seller_registration_otp');
 });
 
