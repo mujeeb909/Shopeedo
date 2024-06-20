@@ -484,7 +484,7 @@
                                     </li>
                                 @endguest
                                 @if (get_setting('seller_app_link'))
-                                    {{ translate('DELIVERY BOY') }}
+                                    {{-- {{ translate('DELIVERY BOY') }} --}}
                                     <li class="mb-2">
                                         <a class="fs-13 text-dark animate-underline-white" target="_blank"
                                             href="{{ get_setting('seller_app_link') }}">
