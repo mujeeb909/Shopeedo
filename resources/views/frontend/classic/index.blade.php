@@ -297,7 +297,7 @@
 
 
     <div class="container">
-        <h6>Hot Deal Today</h6>
+        <h6>Flash Deals </h6>
         <div class="line"></div>
 
         <div class="row">
@@ -358,10 +358,9 @@
                     </div>
                 </div>
             @else
-            <div class="col-lg-3 col-md-6 pt-4 feature-products">
-                <p>No deals Today</p>
-            </div>
-
+                <div class="col-lg-3 col-md-6 pt-4 feature-products">
+                    <p>No Flash deals Today</p>
+                </div>
             @endif
             <div class="col-lg-9 col-md-6 pt-4">
                 <div class="row ">
