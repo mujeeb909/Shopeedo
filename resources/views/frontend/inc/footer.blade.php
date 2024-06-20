@@ -65,14 +65,14 @@
             <!-- Terms & conditions -->
             <div class="col-lg-3 col-6 policy-file">
                 <a class="text-reset h-100  border-right border-bottom border-soft-light text-center p-2 p-md-4 d-block hov-ls-1"
-                href="{{ route('terms') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="26.004" height="32" viewBox="0 0 26.004 32">
-                    <path id="Union_8" data-name="Union 8"
-                        d="M-14508,18932v-.01a6.01,6.01,0,0,1-5.975-5.492h-.021v-14h1v13.5h0a4.961,4.961,0,0,0,4.908,4.994h.091v0h14v1Zm17-4v-1a2,2,0,0,0,2-2h1a3,3,0,0,1-2.927,3Zm-16,0a3,3,0,0,1-3-3h1a2,2,0,0,0,2,2h16v1Zm18-3v-16.994h-4v-1h3.6l-5.6-5.6v3.6h-.01a2.01,2.01,0,0,0,2,2v1a3.009,3.009,0,0,1-3-3h.01v-4h.6l0,0H-14507a2,2,0,0,0-2,2v22h-1v-22a3,3,0,0,1,3-3v0h12l0,0,7,7-.01.01V18925Zm-16-4.992v-1h12v1Zm0-4.006v-1h12v1Zm0-4v-1h12v1Z"
-                        transform="translate(14513.998 -18900.002)" fill="#919199" />
-                </svg>
-                <h4 class="text-dark fs-14 fw-700 mt-3">{{ translate('Terms & conditions') }}</h4>
-            </a>
+                    href="{{ route('terms') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26.004" height="32" viewBox="0 0 26.004 32">
+                        <path id="Union_8" data-name="Union 8"
+                            d="M-14508,18932v-.01a6.01,6.01,0,0,1-5.975-5.492h-.021v-14h1v13.5h0a4.961,4.961,0,0,0,4.908,4.994h.091v0h14v1Zm17-4v-1a2,2,0,0,0,2-2h1a3,3,0,0,1-2.927,3Zm-16,0a3,3,0,0,1-3-3h1a2,2,0,0,0,2,2h16v1Zm18-3v-16.994h-4v-1h3.6l-5.6-5.6v3.6h-.01a2.01,2.01,0,0,0,2,2v1a3.009,3.009,0,0,1-3-3h.01v-4h.6l0,0H-14507a2,2,0,0,0-2,2v22h-1v-22a3,3,0,0,1,3-3v0h12l0,0,7,7-.01.01V18925Zm-16-4.992v-1h12v1Zm0-4.006v-1h12v1Zm0-4v-1h12v1Z"
+                            transform="translate(14513.998 -18900.002)" fill="#919199" />
+                    </svg>
+                    <h4 class="text-dark fs-14 fw-700 mt-3">{{ translate('Terms & conditions') }}</h4>
+                </a>
             </div>
 
             <!-- Return Policy -->
@@ -268,9 +268,9 @@
                             d="M148.16 19.0699C147.87 20.2099 146.86 20.9099 145.4 20.9099C143.58 20.9099 142.46 19.6599 142.46 17.6199C142.46 15.5799 143.6 14.2899 145.4 14.2899C147.2 14.2899 148.24 15.4999 148.24 17.4999V17.9399H143.74V18.0099C143.78 19.1299 144.43 19.8299 145.44 19.8299C146.2 19.8299 146.72 19.5599 146.96 19.0599H148.17L148.16 19.0699ZM143.74 17.0199H146.96C146.93 16.0199 146.32 15.3699 145.39 15.3699C144.46 15.3699 143.81 16.0299 143.74 17.0199Z"
                             fill="white" />
                     </svg>
-    
+
                 </div>
-                
+
             </div>
 
             <div class="col d-none d-lg-block"></div>
@@ -465,7 +465,7 @@
                         <!-- Seller -->
                         @if (get_setting('vendor_system_activation') == 1)
                             <div class="line"></div>
-                            <h4 class="fs-14 text-dark  fw-700 mb-3">{{ translate('Seller Zone') }}
+                            <h4 class="fs-14 text-dark fw-700 mb-3">{{ translate('Seller Zone') }}
                             </h4>
                             <ul class="list-unstyled">
                                 <li class="mb-2">
@@ -497,12 +497,13 @@
 
                         <!-- Delivery Boy -->
                         @if (addon_is_activated('delivery_boy'))
-                            <h4 class="fs-14 text-secondary  fw-700 mt-4 mb-3">
+                            <div class="line"></div>
+                            <h4 class="fs-14 text-dark fw-700 mb-3">
                                 {{ translate('Delivery Boy') }}</h4>
                             <ul class="list-unstyled">
                                 @guest
                                     <li class="mb-2">
-                                        <a class="fs-13 text-soft-light animate-underline-white"
+                                        <a class="fs-13 text-dark animate-underline-white"
                                             href="{{ route('deliveryboy.login') }}">
                                             {{ translate('Login to Delivery Boy Panel') }}
                                         </a>
@@ -511,7 +512,7 @@
 
                                 @if (get_setting('delivery_boy_app_link'))
                                     <li class="mb-2">
-                                        <a class="fs-13 text-soft-light animate-underline-white" target="_blank"
+                                        <a class="fs-13 text-dark animate-underline-white" target="_blank"
                                             href="{{ get_setting('delivery_boy_app_link') }}">
                                             {{ translate('Download Delivery Boy App') }}
                                         </a>
