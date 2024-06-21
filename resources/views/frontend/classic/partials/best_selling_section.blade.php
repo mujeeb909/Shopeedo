@@ -6,9 +6,9 @@
         <div class="container">
             <!-- Top Section -->
             <div class="d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
-                 <!-- Title -->
+                <!-- Title -->
                 <h6 class="">
-                   <span class="">{{ translate('Best Selling Products') }}</span>
+                    <span class="">{{ translate('Best Selling Products') }}</span>
                     <div class="line mt-1"></div>
                 </h6>
                 <!-- Links -->
@@ -23,7 +23,7 @@
             </div>
             <!-- Product Section -->
             <div class="px-sm-3">
-                <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="6" data-xl-items="4" data-lg-items="4"
+                <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="4" data-xl-items="4" data-lg-items="4"
                     data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
                     @foreach ($best_selling_products as $key => $product)
                         <div

@@ -370,7 +370,7 @@
                 <div class="row ">
 
                     <div class="col-md-4 col-sm-12 mb-3 service-affects">
-                        <div class="d-flex border border-dark p-3 h-100">
+                        <div class="d-flex border border-dark p-3 h-100" style="border-radius: 20px">
                             <svg width="55" height="53" viewBox="0 0 55 53" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -997,7 +997,7 @@
 
 
                     <div class="col-md-4 col-sm-12 mb-3 service-affects">
-                        <div class="d-flex border border-dark p-3 h-100">
+                        <div class="d-flex border border-dark p-3 h-100" style="border-radius: 20px">
                             <svg width="48" height="49" viewBox="0 0 48 49" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -1417,7 +1417,7 @@
 
 
                     <div class="col-md-4 col-sm-12 mb-3 service-affects">
-                        <div class="d-flex border border-dark p-3 h-100">
+                        <div class="d-flex border border-dark p-3 h-100" style="border-radius: 20px">
                             <svg width="48" height="40" viewBox="0 0 48 40" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
