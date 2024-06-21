@@ -84,8 +84,18 @@
                             </li>
                         @endif
 
+
+                        <li class="list-inline-item dropdown ml-2 ml-lg-0 mr-0" id="currency-change">
+                            <div id="location" style="margin-left: 12px;">
+                                <span id="location-text">Detecting your location...</span>
+                            </div>
+                        </li>
+
+
                     </ul>
                 </div>
+
+
 
                 <div class="col-6 d-flex align-items-center">
                     <div class="d-none d-xl-block ml-auto mr-0">
@@ -156,7 +166,8 @@
                                             style="width:220px;">
                                             <ul class="list-unstyled no-scrollbar mb-0 text-left">
                                                 @if (isAdmin())
-                                                    <li class="user-top-nav-element border border-top-0" data-id="1">
+                                                    <li class="user-top-nav-element border border-top-0"
+                                                        data-id="1">
                                                         <a href="{{ route('admin.dashboard') }}"
                                                             class="text-truncate text-dark px-4 fs-14 d-flex align-items-center hov-column-gap-1">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -1104,3 +1115,66 @@
             }
         </script>
     @endsection
+
+    <script>
+        function showLocation(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const locationText = document.getElementById("location-text");
+
+
+            const apiKey = '4fa638e1eabc4d4e93e2cce1cd5ef3fc';
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        const result = data.results[0];
+                        const components = result.components;
+                        const city = components.city || components.state_district ||
+                            components.village;
+                        const country = components.country;
+
+
+                        if (city && country) {
+                            locationText.textContent = `${city}, ${country}`;
+                        } else {
+                            locationText.textContent = 'Location not found';
+                        }
+                    } else {
+                        locationText.textContent = 'No results found';
+                    }
+                })
+                .catch(error => {
+                    locationText.textContent = 'Geocoding error: ' + error;
+                });
+        }
+
+        function showError(error) {
+            const locationText = document.getElementById("location-text");
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    locationText.textContent = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    locationText.textContent = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    locationText.textContent = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    locationText.textContent = "An unknown error occurred.";
+                    break;
+            }
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showLocation, showError);
+            } else {
+                document.getElementById("location-text").textContent = "Geolocation is not supported by this browser.";
+            }
+        }
+        window.onload = getLocation;
+    </script>
