@@ -263,8 +263,8 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                         viewBox="0 0 12 12">
                                         <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
-                                            <circle id="Ellipse_39" data-name="Ellipse 39" cx="6" cy="6"
-                                                r="6" transform="translate(973 633)" fill="#fff" />
+                                            <circle id="Ellipse_39" data-name="Ellipse 39" cx="6"
+                                                cy="6" r="6" transform="translate(973 633)" fill="#fff" />
                                             <g id="Group_23920" data-name="Group 23920"
                                                 transform="translate(973 633)">
                                                 <path id="Path_28698" data-name="Path 28698"
@@ -531,9 +531,13 @@
         </div> --}}
 
         <!-- Promote Link -->
-        {{-- <div class="d-table width-100 mt-3">
+        <div class="d-table width-100 mt-3">
             <div class="d-table-cell">
-                @if (Auth::check() && addon_is_activated('affiliate_system') && get_affliate_option_status() && Auth::user()->affiliate_user != null && Auth::user()->affiliate_user->status)
+                @if (Auth::check() &&
+                        addon_is_activated('affiliate_system') &&
+                        get_affliate_option_status() &&
+                        Auth::user()->affiliate_user != null &&
+                        Auth::user()->affiliate_user->status)
                     @php
                         if (Auth::check()) {
                             if (Auth::user()->referral_code == null) {
@@ -541,7 +545,11 @@
                                 Auth::user()->save();
                             }
                             $referral_code = Auth::user()->referral_code;
-                            $referral_code_url = URL::to('/product') . '/' . $detailedProduct->slug . "?product_referral_code=$referral_code";
+                            $referral_code_url =
+                                URL::to('/product') .
+                                '/' .
+                                $detailedProduct->slug .
+                                "?product_referral_code=$referral_code";
                         }
                     @endphp
                     <div>
@@ -551,7 +559,7 @@
                     </div>
                 @endif
             </div>
-        </div> --}}
+        </div>
 
         <!-- Refund -->
         {{-- @php
@@ -609,3 +617,20 @@
         </div>
     </div> --}}
 </div>
+@section('script')
+    <script type="text/javascript">
+        function CopyToClipboard(e) {
+            var url = $(e).data('url');
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(url).select();
+            try {
+                document.execCommand("copy");
+                AIZ.plugins.notify('success', '{{ translate('Link copied to clipboard') }}');
+            } catch (err) {
+                AIZ.plugins.notify('danger', '{{ translate('Oops, unable to copy') }}');
+            }
+            $temp.remove();
+        }
+    </script>
+@endsection

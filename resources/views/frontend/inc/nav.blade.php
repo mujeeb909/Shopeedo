@@ -90,8 +90,12 @@
                 <div class="col-6 d-flex align-items-center">
                     <div class="d-none d-xl-block ml-auto mr-0">
                         <div class="d-flex align-items-center nav-links-color" style="gap: 30px">
-                            <a href="">Logistic Partner</a>
-                            <a href="">Affliate Partner</a>
+                            <a href="">Become A Rider</a>
+                            @if (addon_is_activated('affiliate_system'))
+                                <a class="" href="{{ route('affiliate.apply') }}">
+                                    {{ translate('Be an affiliate partner') }}
+                                </a>
+                            @endif
                             <a href="{{ route('shops.create') }}"
                                 class=" fs-12 d-inline-block border-width-2">{{ translate('Become a Seller') }}</a>
                             <a href="{{ route('seller.login') }}"
