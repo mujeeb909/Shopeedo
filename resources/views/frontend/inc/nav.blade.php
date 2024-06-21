@@ -148,7 +148,8 @@
                                         class="text-dark opacity-60 hov-opacity-100 hov-text-primary fs-12 d-inline-block py-2 pl-2">{{ translate('Registration') }}</a>
                                 </span>
                             @endauth
-                            <div class="hover-user-top-menu position-absolute top-100 left-4 right-2 z-3">
+                            <div class="hover-user-top-menu position-absolute top-100 left-4 right-2 z-3"
+                                style="left: 168px;">
                                 <div class="container">
                                     <div class="position-static float-right">
                                         <div class="aiz-user-top-menu bg-white rounded-0 border-top shadow-sm"
