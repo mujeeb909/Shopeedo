@@ -523,7 +523,7 @@
                                     <input type="text" class="border-0 form-control fs-14" id="search"
                                         name="keyword"
                                         @isset($query) value="{{ $query }}" @endisset
-                                        placeholder="Search Products..." autocomplete="off">
+                                        placeholder="Search Products..." autocomplete="off" >
                                     <button type="submit" class="btn btn-dark"
                                         style="border-radius: 100%;width: 48.52px;height: 46.52px;">
                                         <svg style="margin-left: -4px;" id="Group_723" data-name="Group 723"

@@ -789,4 +789,9 @@ class HomeController extends Controller
         $sql_path = base_path('public/uploads/demo_data.sql');
         DB::unprepared(file_get_contents($sql_path));
     }
+
+    public function test()
+    {
+        return view('delivery_boys.delivery_registeration');
+    }
 }

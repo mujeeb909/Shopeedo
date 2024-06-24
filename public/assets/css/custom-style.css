@@ -80,7 +80,6 @@
 .aiz-count-down-circle #time .circle {
     background-color: #7D9A40;
 }
-
 /* for order confirmation page- start */
 .order-progress-container {
     display: flex;
@@ -106,4 +105,4 @@
      font-size: 35px;
      font-weight: bold; 
  }
- /* for order confirmation page-end*/
+ /* for order confirmation page- ends */
