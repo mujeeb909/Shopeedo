@@ -7,6 +7,15 @@
                 height: 203px !important;
             }
         }
+
+        @media (min-width: 992px) {
+            .custom-large-screen-style {
+                max-width: 75% !important;
+                max-height: 460px;
+                object-fit: cover;
+                border-radius: 20px;
+            }
+        }
     </style>
     @php $lang = get_system_language()->code;  @endphp
     <!-- Sliders -->
@@ -43,7 +52,7 @@
                                 $home_slider_links = get_setting('home_slider_links', null, $lang);
                             @endphp
                             @foreach ($sliders as $key => $slider)
-                                <div class="carousel-box"
+                                {{-- <div class="carousel-box"
                                     style="max-height:350px;margin-top:15px;border-radius:20px; overflow:hidden;">
                                     <a
                                         href="{{ isset(json_decode($home_slider_links, true)[$key]) ? json_decode($home_slider_links, true)[$key] : '' }}">
@@ -55,6 +64,17 @@
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
 
                                     </a>
+                                </div> --}}
+                                <div class="carousel-box"
+                                    style="max-height:350px;margin-top:15px;border-radius:20px; overflow:hidden;">
+                                    <a
+                                        href="{{ isset(json_decode($home_slider_links, true)[$key]) ? json_decode($home_slider_links, true)[$key] : '' }}">
+                                        <img class="d-block mw-100 img-fit h-auto h-180px h-md-320px h-lg-460px custom-large-screen-style"
+                                            src="{{ $slider ? my_asset($slider->file_name) : static_asset('assets/img/placeholder.jpg') }}"
+                                            alt="{{ env('APP_NAME') }} promo"
+                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
+                                    </a>
+
                                 </div>
                             @endforeach
                         </div>
