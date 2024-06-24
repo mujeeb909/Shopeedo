@@ -100,7 +100,7 @@
                 <div class="col-6 d-flex align-items-center">
                     <div class="d-none d-xl-block ml-auto mr-0">
                         <div class="d-flex align-items-center nav-links-color" style="gap: 30px">
-                            <a href="">Become A Rider</a>
+                            <a href="">Become a Rider</a>
                             @if (addon_is_activated('affiliate_system'))
                                 <a class="" href="{{ route('affiliate.apply') }}">
                                     {{ translate('Be an affiliate partner') }}
@@ -929,7 +929,8 @@
                                 ? 'text-white'
                                 : 'text-dark';
                     @endphp
-                    <div class="ml-xl-4 w-100 overflow-hidden">
+                    {{-- ml-xl-4 --}}
+                    <div class=" w-100 overflow-hidden">
                         <div class="d-flex align-items-center justify-content-center justify-content-xl-start h-100">
                             <ul class="list-inline mb-0 pl-0 hor-swipe c-scrollbar-light">
                                 @if (get_setting('header_menu_labels') != null)

@@ -14,7 +14,7 @@
         <div class="container">
             <div class="d-flex flex-wrap position-relative">
                 <div class="d-none d-xl-block all-category has-transition" style="color:black;">
-                    <div class="px-3 h-100" style="padding-top: 12px;padding-bottom: 12px; width:270px; cursor: pointer;">
+                    <div class="px-2 h-100" style="padding-top: 12px;padding-bottom: 12px; width:270px; cursor: pointer;">
                         <div class="d-flex align-items-center justify-content-between p-2">
                             <div>
                                 <span class="fw-700 fs-16 mr-3">{{ translate('All Categories') }}</span>
@@ -30,7 +30,8 @@
                 </div>
 
                 <!-- Sliders -->
-                <div class="home-slider">
+                
+                <div class="home-slider ">
                     @if (get_setting('home_slider_images', null, $lang) != null)
                         <div class="aiz-carousel dots-inside-bottom" data-autoplay="true" data-infinite="true"
                             style="border-radius:20px;">
@@ -43,8 +44,8 @@
                                 $home_slider_links = get_setting('home_slider_links', null, $lang);
                             @endphp
                             @foreach ($sliders as $key => $slider)
-                                <div class="carousel-box"
-                                    style="max-height:350px;margin-top:15px;border-radius:20px; overflow:hidden;">
+                                <div class="carousel-box " 
+                                    style="max-height:350px;margin-top:15px;border-radius:20px; overflow:hidden; margin-left:5rem !important">
                                     <a
                                         href="{{ isset(json_decode($home_slider_links, true)[$key]) ? json_decode($home_slider_links, true)[$key] : '' }}">
                                         <!-- Image -->

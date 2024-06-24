@@ -194,7 +194,7 @@
 
         </div>
     </section>
-
+{{-- 
     <section>
         <div class="container">
         <h1 class="text-center font-weight-bold my-5">Frequently Asked Questions</h1>
@@ -215,21 +215,58 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+    <section>
+        <div class="container">
+            <h1 class="text-center font-weight-bold my-5">Frequently Asked Questions</h1>
+            <div class="accordion" id="faqAccordion">
+                <div class="card">
+                    <div class="card-header accordion-header d-flex justify-content-between" id="headingOne">
+                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Kya ma shopeedo ka ek rider bn skta hon?
+                        </button>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#faqAccordion">
+                        <div class="card-body accordion-body pl-5">
+                            Bilkul, iss ke liye ap ka ID card ki need ho gi jo ap ko verification ke time pa add krna ho ga.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection
 
 @section('script')
 <script>
-     $('#faqAccordion').on('show.bs.collapse', function (e) {
-            $(e.target).prev('.card-header').find('.toggle-icon').html('<i class="fas fa-minus"></i>');
+    $(document).ready(function() {
+        $('#faqAccordion .card-header').on('click', function() {
+            var $this = $(this);
+            var $icon = $this.find('.toggle-icon i');
+            var $collapse = $this.next('.collapse');
+
+            // Toggle the collapse state
+            if ($collapse.hasClass('show')) {
+                $collapse.collapse('hide');
+                $icon.removeClass('fa-minus').addClass('fa-plus');
+            } else {
+                $('#faqAccordion .collapse.show').collapse('hide'); // Close other open items
+                $('#faqAccordion .toggle-icon i').removeClass('fa-minus').addClass('fa-plus'); // Reset all icons
+                $collapse.collapse('show');
+                $icon.removeClass('fa-plus').addClass('fa-minus');
+            }
+        });
+
+        $('#faqAccordion').on('show.bs.collapse', function (e) {
             $(e.target).prev('.card-header').addClass('active-header');
             $(e.target).addClass('active-body');
         });
 
         $('#faqAccordion').on('hide.bs.collapse', function (e) {
-            $(e.target).prev('.card-header').find('.toggle-icon').html('<i class="fas fa-plus"></i>');
             $(e.target).prev('.card-header').removeClass('active-header');
             $(e.target).removeClass('active-body');
         });
+    });
 </script>
 @endsection

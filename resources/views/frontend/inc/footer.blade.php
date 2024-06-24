@@ -505,7 +505,13 @@
                                     <li class="mb-2">
                                         <a class="fs-13 text-dark animate-underline-white"
                                             href="{{ route('deliveryboy.login') }}">
-                                            {{ translate('Login to Delivery Boy Panel') }}
+                                            {{ translate('Become a Delivery Boy') }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a class="fs-13 text-dark animate-underline-white"
+                                            href="{{ route('deliveryboy.login') }}">
+                                            {{ translate('Login to Delivery Panel') }}
                                         </a>
                                     </li>
                                 @endguest
@@ -669,6 +675,7 @@
                                         {{ translate('Login to Seller Panel') }}
                                     </a>
                                 </li>
+                                
                             @endguest
                             @if (get_setting('seller_app_link'))
                                 <li class="mb-2 pb-2">
@@ -695,6 +702,12 @@
                     <div class="container">
                         <ul class="list-unstyled mt-3">
                             @guest
+                                <li class="mb-2 pb-2 {{ areActiveRoutes(['deliveryboy.login'], ' active') }}">
+                                    <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white"
+                                        href="{{ route('deliveryboy.login') }}">
+                                        {{ translate('Become a Delivery Boy') }}
+                                    </a>
+                                </li>
                                 <li class="mb-2 pb-2 {{ areActiveRoutes(['deliveryboy.login'], ' active') }}">
                                     <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white"
                                         href="{{ route('deliveryboy.login') }}">

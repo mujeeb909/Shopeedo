@@ -207,20 +207,23 @@ label {
     border-top: none !important; /* Remove top border */
 }
 
-.accordion-header {
-    background-color: #7D9A40;
+/* .accordion-header {
+    background-color: rgba(145, 137, 137, 0.2);
     color: black;
-}
+} */
 .accordion-body {
     /* background-color: #918989; */
-    background-color: rgba(145, 137, 137, 0.2)
+    background-color: rgba(145, 137, 137, 0.2);
 }
- .active-header {
-            /* background-color: #918989 !important; */
-            background-color: rgba(145, 137, 137, 0.1);
-}
-.active-body {
-            /* background-color: #918989 !important; */
-            background-color: rgba(145, 137, 137, 0.1)
-            /* background-color: rgba(145, 137, 137, 0.2); */
+
+.card-header.active-header,
+.card-body.active-body {
+        background-color: rgba(145, 137, 137, 0.2) !important;
+ }
+ 
+@media (max-width: 767.98px) {
+        .carousel-box img {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
 }
