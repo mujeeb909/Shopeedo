@@ -63,8 +63,8 @@
 }
 .service-affects:hover h6,
 .service-affects:hover p {
-    font-weight: 500;
     color: #7D9A40;
+    font-weight: bold;
 }
 
 .aiz-count-down-circle #time div {
@@ -80,20 +80,8 @@
 .aiz-count-down-circle #time .circle {
     background-color: #7D9A40;
 }
-
-.nav-rider {
-    background-color: #7D9A40;
-}
-
-.hero-rider{
-    /* min-height:500px; 
-    background-size: 100% auto; 
-    background-repeat: no-repeat; */
-    min-height: 50vh; /* Use viewport height units */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 4vw; /* Use viewport width units for padding */
+/* for order confirmation page- start */
+.order-progress-container {
     display: flex;
     align-items: center;
     justify-content: center;

@@ -76,9 +76,35 @@
                         <h1 class="mb-2 fs-28 fw-500 text-success">{{ translate('Thank You for Your Order!')}}</h1>
                         <p class="fs-13 text-soft-dark">{{  translate('A copy or your order summary has been sent to') }} <strong>{{ json_decode($first_order->shipping_address)->email }}</strong></p>
                     </div>
+                    <div class="mb-4 bg-white p-4 border">
+                    <div style= "display: flex; justify-content: space-between;">
+                        <p class="text-size">Delivery time</p>
+                        <p id="timer" >Preparing your order</p>
+                    </div>
+
+                        <p class="time">45-60 mins</p>
+                        <div class="order-progress-container">
+                            <div style="height: 6px;" class="progress order-progress-item" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-success" style="width: 100%;"></div>
+                            </div>
+                            <div style="height: 6px;"  class="progress order-progress-item " role="progressbar" aria-label="Success example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 100%; background-color: #e9ecef;"></div>
+                            </div>
+                            <div style="height: 6px;"  class="progress order-progress-item " role="progressbar" aria-label="Success example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 100%; background-color: #e9ecef;"></div>
+                            </div>
+                            <div  style="height: 6px;"  class="progress order-progress-item progress-item" role="progressbar" aria-label="Success example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 100%; background-color: #e9ecef;"></div>
+                            </div>
+                        </div>
+
+
+                        <p style="margin-top: 20px;">When it's ready, the delivery will be on its way to you.</p>
+                    </div>
+                   
                     <!-- Order Summary -->
                     <div class="mb-4 bg-white p-4 border">
-                        <h5 class="fw-600 mb-3 fs-16 text-soft-dark pb-2 border-bottom">{{ translate('Order Summary')}}</h5>
+                        <h5 class="fw-600 mb-3 fs-16 text-soft-dark pb-2 border-bottom">{{ translate('Order Details')}}</h5>
                         <div class="row">
                             <div class="col-md-6">
                                 <table class="table fs-14 text-soft-dark">
@@ -133,7 +159,7 @@
                                 </div>
                                 <!-- Order Details -->
                                 <div>
-                                    <h5 class="fw-600 text-soft-dark mb-3 fs-16 pb-2">{{ translate('Order Details')}}</h5>
+                                    <h5 class="fw-600 text-soft-dark mb-3 fs-16 pb-2">{{ translate('Order Summary')}}</h5>
                                     <!-- Product Details -->
                                     <div>
                                         <table class="table table-responsive-md text-soft-dark fs-14">
@@ -260,6 +286,39 @@
                 }
             );
         });
+        // Generate a random duration between 45 and 60 minutes
+var minDuration = 45; // 45 minutes
+var maxDuration = 60; // 60 minutes
+var duration = Math.floor(Math.random() * (maxDuration - minDuration + 1)) + minDuration;
+var totalDuration = duration; // Save the total duration
+var endTime = new Date().getTime() + duration * 60 * 1000;
+
+// Update the countdown every 1 second
+var x = setInterval(function() {
+
+  // Get the current date and time
+  var now = new Date().getTime();
+    
+  // Find the remaining time between now and the end time
+  var distance = endTime - now;
+    
+  // Time calculations for minutes
+  var minutes = Math.ceil(distance / (1000 * 60));
+    
+  // Update the progress bar
+  var progress = ((totalDuration * 60 * 1000 - distance) / (totalDuration * 60 * 1000)) * 100;
+  document.getElementById("progressBar").style.width = progress + "%";
+
+  // If the countdown is over, write some text and reset progress bar
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("timer").innerHTML = "EXPIRED";
+    document.getElementById("progressBar").style.width = "100%";
+    document.getElementById("progressBar").style.backgroundColor = "red";
+  } else {
+    document.getElementById("timer").innerHTML = "Preparing your order (" + minutes + " mins remaining)";
+  }
+}, 1000);
     </script>
     <!-- Facebook Pixel purchase Event -->
     @endif
