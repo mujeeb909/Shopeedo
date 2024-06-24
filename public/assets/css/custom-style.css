@@ -80,3 +80,30 @@
 .aiz-count-down-circle #time .circle {
     background-color: #7D9A40;
 }
+
+/* for order confirmation page- start */
+.order-progress-container {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+ }
+ .order-progress-item {
+    flex: 1;
+     margin-right: 5px;
+  }
+ .order-progress-item:last-child {
+     margin-right: 0;
+ }
+ #timer{
+     font-weight: bold; 
+     font-size: 14px;
+ }
+ .text-size{
+     font-size: 15px;
+ }
+ .time{
+     display: flex;
+     font-size: 35px;
+     font-weight: bold; 
+ }
+ /* for order confirmation page-end*/
