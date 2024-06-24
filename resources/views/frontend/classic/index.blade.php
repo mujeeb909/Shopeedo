@@ -32,7 +32,8 @@
                 <!-- Sliders -->
                 <div class="home-slider">
                     @if (get_setting('home_slider_images', null, $lang) != null)
-                        <div class="aiz-carousel dots-inside-bottom" data-autoplay="true" data-infinite="true">
+                        <div class="aiz-carousel dots-inside-bottom" data-autoplay="true" data-infinite="true"
+                            style="border-radius:20px;">
                             @php
                                 $decoded_slider_images = json_decode(
                                     get_setting('home_slider_images', null, $lang),
@@ -42,14 +43,17 @@
                                 $home_slider_links = get_setting('home_slider_links', null, $lang);
                             @endphp
                             @foreach ($sliders as $key => $slider)
-                                <div class="carousel-box" style="max-height:350px">
+                                <div class="carousel-box"
+                                    style="max-height:350px;margin-top:15px;border-radius:20px; overflow:hidden;">
                                     <a
                                         href="{{ isset(json_decode($home_slider_links, true)[$key]) ? json_decode($home_slider_links, true)[$key] : '' }}">
                                         <!-- Image -->
-                                        <img class="d-block mw-100 img-fit overflow-hidden h-180px h-md-320px h-lg-460px overflow-hidden"
+                                        <img class="d-block mw-100 img-fit h-auto h-180px h-md-320px h-lg-460px"
                                             src="{{ $slider ? my_asset($slider->file_name) : static_asset('assets/img/placeholder.jpg') }}"
                                             alt="{{ env('APP_NAME') }} promo"
+                                            style="max-width: 75% !important; max-height: 460px; object-fit: cover; border-radius: 20px;"
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
+
                                     </a>
                                 </div>
                             @endforeach
@@ -297,7 +301,7 @@
 
 
     <div class="container">
-        <h6>Hot Deal Today</h6>
+        <h6>Flash Deals </h6>
         <div class="line"></div>
 
         <div class="row">
@@ -358,16 +362,15 @@
                     </div>
                 </div>
             @else
-            <div class="col-lg-3 col-md-6 pt-4 feature-products">
-                <p>No deals Today</p>
-            </div>
-
+                <div class="col-lg-3 col-md-6 pt-4 feature-products">
+                    <p>No Flash deals Today</p>
+                </div>
             @endif
             <div class="col-lg-9 col-md-6 pt-4">
                 <div class="row ">
 
                     <div class="col-md-4 col-sm-12 mb-3 service-affects">
-                        <div class="d-flex border border-dark p-3 h-100">
+                        <div class="d-flex border border-dark p-3 h-100" style="border-radius: 20px">
                             <svg width="55" height="53" viewBox="0 0 55 53" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -994,7 +997,7 @@
 
 
                     <div class="col-md-4 col-sm-12 mb-3 service-affects">
-                        <div class="d-flex border border-dark p-3 h-100">
+                        <div class="d-flex border border-dark p-3 h-100" style="border-radius: 20px">
                             <svg width="48" height="49" viewBox="0 0 48 49" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -1414,7 +1417,7 @@
 
 
                     <div class="col-md-4 col-sm-12 mb-3 service-affects">
-                        <div class="d-flex border border-dark p-3 h-100">
+                        <div class="d-flex border border-dark p-3 h-100" style="border-radius: 20px">
                             <svg width="48" height="40" viewBox="0 0 48 40" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
