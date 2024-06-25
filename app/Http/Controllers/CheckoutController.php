@@ -628,7 +628,7 @@ class CheckoutController extends Controller
         //     ->delete();
 
         Session::forget('club_point');
-        Session::forget('combined_order_id');
+        //Session::forget('combined_order_id');
 
         foreach ($combined_order->orders as $order) {
             if ($order->notified == 0) {
@@ -637,6 +637,8 @@ class CheckoutController extends Controller
                 $order->save();
             }
         }
+
+        //dd($combined_order->orders->first());
 
         $categories = Category::with('childrenCategories')->where('parent_id', 0)->orderBy('order_level', 'desc')->get();
 

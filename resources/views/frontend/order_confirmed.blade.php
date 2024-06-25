@@ -1,7 +1,6 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-
     <!-- Steps -->
     <section class="pt-5 mb-0">
         <div class="container">
@@ -36,12 +35,17 @@
                         </div>
                         <div class="col active">
                             <div class="text-center border border-bottom-6px p-2 text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32.001" viewBox="0 0 32 32.001" class="cart-rotate mb-3 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32.001"
+                                    viewBox="0 0 32 32.001" class="cart-rotate mb-3 mt-1">
                                     <g id="Group_23976" data-name="Group 23976" transform="translate(-282 -404.889)">
-                                      <path class="cart-ok has-transition" id="Path_28723" data-name="Path 28723" d="M313.283,409.469a1,1,0,0,0-1.414,0l-14.85,14.85-5.657-5.657a1,1,0,1,0-1.414,1.414l6.364,6.364a1,1,0,0,0,1.414,0l.707-.707,14.85-14.849A1,1,0,0,0,313.283,409.469Z" fill="#ffffff"/>
-                                      <g id="LWPOLYLINE">
-                                        <path id="Path_28724" data-name="Path 28724" d="M313.372,416.451,311.72,418.1a14,14,0,1,1-5.556-8.586l1.431-1.431a16,16,0,1,0,5.777,8.365Z" fill="#d43533"/>
-                                      </g>
+                                        <path class="cart-ok has-transition" id="Path_28723" data-name="Path 28723"
+                                            d="M313.283,409.469a1,1,0,0,0-1.414,0l-14.85,14.85-5.657-5.657a1,1,0,1,0-1.414,1.414l6.364,6.364a1,1,0,0,0,1.414,0l.707-.707,14.85-14.849A1,1,0,0,0,313.283,409.469Z"
+                                            fill="#ffffff" />
+                                        <g id="LWPOLYLINE">
+                                            <path id="Path_28724" data-name="Path 28724"
+                                                d="M313.372,416.451,311.72,418.1a14,14,0,1,1-5.556-8.586l1.431-1.431a16,16,0,1,0,5.777,8.365Z"
+                                                fill="#d43533" />
+                                        </g>
                                     </g>
                                 </svg>
                                 <h3 class="fs-14 fw-600 d-none d-lg-block">{{ translate('5. Confirmation') }}
@@ -60,89 +64,117 @@
             <div class="row">
                 <div class="col-xl-8 mx-auto">
                     @php
-                        $first_order = $combined_order->orders->first()
+                        $first_order = $combined_order->orders->first();
+                        $progressSteps = [
+                            'pending' => ['bg-success', '', '', ''],
+                            'confirmed' => ['bg-success', 'bg-success', '', ''],
+                            'on_the_way' => ['bg-success', 'bg-success', 'bg-success', ''],
+                            'delivered' => ['bg-success', 'bg-success', 'bg-success', 'bg-success'],
+                        ];
+                        $statusMessages = [
+                            'pending' => 'Preparing your order',
+                            'confirmed' => 'Order Confirmed',
+                            'on_the_way' => 'Rider is on the way',
+                            'delivered' => 'Order Delivered',
+                        ];
+
+                        $deliveryStatus = $first_order->delivery_status;
+                        $message = $statusMessages[$deliveryStatus] ?? 'Unknown status';
                     @endphp
                     <!-- Order Confirmation Text-->
                     <div class="text-center py-4 mb-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" class=" mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"
+                            class=" mb-3">
                             <g id="Group_23983" data-name="Group 23983" transform="translate(-978 -481)">
-                              <circle id="Ellipse_44" data-name="Ellipse 44" cx="18" cy="18" r="18" transform="translate(978 481)" fill="#85b567"/>
-                              <g id="Group_23982" data-name="Group 23982" transform="translate(32.439 8.975)">
-                                <rect id="Rectangle_18135" data-name="Rectangle 18135" width="11" height="3" rx="1.5" transform="translate(955.43 487.707) rotate(45)" fill="#fff"/>
-                                <rect id="Rectangle_18136" data-name="Rectangle 18136" width="3" height="18" rx="1.5" transform="translate(971.692 482.757) rotate(45)" fill="#fff"/>
-                              </g>
+                                <circle id="Ellipse_44" data-name="Ellipse 44" cx="18" cy="18" r="18"
+                                    transform="translate(978 481)" fill="#85b567" />
+                                <g id="Group_23982" data-name="Group 23982" transform="translate(32.439 8.975)">
+                                    <rect id="Rectangle_18135" data-name="Rectangle 18135" width="11" height="3"
+                                        rx="1.5" transform="translate(955.43 487.707) rotate(45)" fill="#fff" />
+                                    <rect id="Rectangle_18136" data-name="Rectangle 18136" width="3" height="18"
+                                        rx="1.5" transform="translate(971.692 482.757) rotate(45)" fill="#fff" />
+                                </g>
                             </g>
                         </svg>
-                        <h1 class="mb-2 fs-28 fw-500 text-success">{{ translate('Thank You for Your Order!')}}</h1>
-                        <p class="fs-13 text-soft-dark">{{  translate('A copy or your order summary has been sent to') }} <strong>{{ json_decode($first_order->shipping_address)->email }}</strong></p>
+                        <h1 class="mb-2 fs-28 fw-500 text-success">{{ translate('Thank You for Your Order!') }}</h1>
+                        <p class="fs-13 text-soft-dark">{{ translate('A copy or your order summary has been sent to') }}
+                            <strong>{{ json_decode($first_order->shipping_address)->email }}</strong>
+                        </p>
                     </div>
-                    <div class="mb-4 bg-white p-4 border">
-                    <div style= "display: flex; justify-content: space-between;">
-                        <p class="text-size">Delivery time</p>
-                        <p id="timer" >Preparing your order</p>
-                    </div>
+                    <div class="mb-4 bg-white p-4 border" style="border-radius: 12px;">
+                        <div style= "display: flex; justify-content: space-between;">
+                            <p class="text-size">Delivery time</p>
+                            <p id="timer">{{ $message }}</p>
+                        </div>
 
                         <p class="time">45-60 mins</p>
                         <div class="order-progress-container">
-                            <div style="height: 6px;" class="progress order-progress-item" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-success" style="width: 100%;"></div>
-                            </div>
-                            <div style="height: 6px;"  class="progress order-progress-item " role="progressbar" aria-label="Success example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 100%; background-color: #e9ecef;"></div>
-                            </div>
-                            <div style="height: 6px;"  class="progress order-progress-item " role="progressbar" aria-label="Success example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 100%; background-color: #e9ecef;"></div>
-                            </div>
-                            <div  style="height: 6px;"  class="progress order-progress-item progress-item" role="progressbar" aria-label="Success example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 100%; background-color: #e9ecef;"></div>
-                            </div>
+                            @foreach ($progressSteps[$deliveryStatus] as $progressClass)
+                                <div style="height: 6px;" class="progress order-progress-item" role="progressbar"
+                                    aria-label="Success example" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar {{ $progressClass }}"
+                                        style="width: 100%; {{ $progressClass ? '' : 'background-color: #e9ecef;' }}">
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-
-
                         <p style="margin-top: 20px;">When it's ready, the delivery will be on its way to you.</p>
                     </div>
-                   
+
                     <!-- Order Summary -->
-                    <div class="mb-4 bg-white p-4 border">
-                        <h5 class="fw-600 mb-3 fs-16 text-soft-dark pb-2 border-bottom">{{ translate('Order Details')}}</h5>
+                    <div class="mb-4 bg-white p-4 border" style="border-radius: 12px;">
+                        <h5 class="fw-600 mb-3 fs-16 text-soft-dark pb-2 border-bottom">{{ translate('Order Details') }}
+                        </h5>
                         <div class="row">
                             <div class="col-md-6">
                                 <table class="table fs-14 text-soft-dark">
                                     <tr>
-                                        <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Order date')}}:</td>
+                                        <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Order date') }}:</td>
                                         <td class="border-top-0 py-2">{{ date('d-m-Y H:i A', $first_order->date) }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Name')}}:</td>
-                                        <td class="border-top-0 py-2">{{ json_decode($first_order->shipping_address)->name }}</td>
+                                        <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Name') }}:</td>
+                                        <td class="border-top-0 py-2">
+                                            {{ json_decode($first_order->shipping_address)->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Email')}}:</td>
-                                        <td class="border-top-0 py-2">{{ json_decode($first_order->shipping_address)->email }}</td>
+                                        <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Email') }}:</td>
+                                        <td class="border-top-0 py-2">
+                                            {{ json_decode($first_order->shipping_address)->email }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Shipping address')}}:</td>
-                                        <td class="border-top-0 py-2">{{ json_decode($first_order->shipping_address)->address }}, {{ json_decode($first_order->shipping_address)->city }}, {{ json_decode($first_order->shipping_address)->country }}</td>
+                                        <td class="w-50 fw-600 border-top-0 pl-0 py-2">
+                                            {{ translate('Shipping address') }}:</td>
+                                        <td class="border-top-0 py-2">
+                                            {{ json_decode($first_order->shipping_address)->address }},
+                                            {{ json_decode($first_order->shipping_address)->city }},
+                                            {{ json_decode($first_order->shipping_address)->country }}</td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="col-md-6">
                                 <table class="table">
                                     <tr>
-                                        <td class="w-50 fw-600 border-top-0 py-2">{{ translate('Order status')}}:</td>
-                                        <td class="border-top-0 pr-0 py-2">{{ translate(ucfirst(str_replace('_', ' ', $first_order->delivery_status))) }}</td>
+                                        <td class="w-50 fw-600 border-top-0 py-2">{{ translate('Order status') }}:</td>
+                                        <td class="border-top-0 pr-0 py-2">
+                                            {{ translate(ucfirst(str_replace('_', ' ', $first_order->delivery_status))) }}
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td class="w-50 fw-600 border-top-0 py-2">{{ translate('Total order amount')}}:</td>
-                                        <td class="border-top-0 pr-0 py-2">{{ single_price($combined_order->grand_total) }}</td>
+                                        <td class="w-50 fw-600 border-top-0 py-2">{{ translate('Total order amount') }}:
+                                        </td>
+                                        <td class="border-top-0 pr-0 py-2">
+                                            {{ single_price($combined_order->grand_total) }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="w-50 fw-600 border-top-0 py-2">{{ translate('Shipping')}}:</td>
-                                        <td class="border-top-0 pr-0 py-2">{{ translate('Flat shipping rate')}}</td>
+                                        <td class="w-50 fw-600 border-top-0 py-2">{{ translate('Shipping') }}:</td>
+                                        <td class="border-top-0 pr-0 py-2">{{ translate('Flat shipping rate') }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="w-50 fw-600 border-top-0 py-2">{{ translate('Payment method')}}:</td>
-                                        <td class="border-top-0 pr-0 py-2">{{ translate(ucfirst(str_replace('_', ' ', $first_order->payment_type))) }}</td>
+                                        <td class="w-50 fw-600 border-top-0 py-2">{{ translate('Payment method') }}:</td>
+                                        <td class="border-top-0 pr-0 py-2">
+                                            {{ translate(ucfirst(str_replace('_', ' ', $first_order->payment_type))) }}
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -151,46 +183,55 @@
 
                     <!-- Orders Info -->
                     @foreach ($combined_order->orders as $order)
-                        <div class="card shadow-none border rounded-0">
+                        <div class="card shadow-none border rounded-0" style="border-radius: 12px;">
                             <div class="card-body">
                                 <!-- Order Code -->
                                 <div class="text-center py-1 mb-4">
-                                    <h2 class="h5 fs-20">{{ translate('Order Code:')}} <span class="fw-700 text-primary">{{ $order->code }}</span></h2>
+                                    <h2 class="h5 fs-20">{{ translate('Order Code:') }} <span
+                                            class="fw-700 text-primary">{{ $order->code }}</span></h2>
                                 </div>
                                 <!-- Order Details -->
                                 <div>
-                                    <h5 class="fw-600 text-soft-dark mb-3 fs-16 pb-2">{{ translate('Order Summary')}}</h5>
+                                    <h5 class="fw-600 text-soft-dark mb-3 fs-16 pb-2">{{ translate('Order Summary') }}
+                                    </h5>
                                     <!-- Product Details -->
                                     <div>
                                         <table class="table table-responsive-md text-soft-dark fs-14">
                                             <thead>
                                                 <tr>
                                                     <th class="opacity-60 border-top-0 pl-0">#</th>
-                                                    <th class="opacity-60 border-top-0" width="30%">{{ translate('Product')}}</th>
-                                                    <th class="opacity-60 border-top-0">{{ translate('Variation')}}</th>
-                                                    <th class="opacity-60 border-top-0">{{ translate('Quantity')}}</th>
-                                                    <th class="opacity-60 border-top-0">{{ translate('Delivery Type')}}</th>
-                                                    <th class="text-right opacity-60 border-top-0 pr-0">{{ translate('Price')}}</th>
+                                                    <th class="opacity-60 border-top-0" width="30%">
+                                                        {{ translate('Product') }}</th>
+                                                    <th class="opacity-60 border-top-0">{{ translate('Variation') }}</th>
+                                                    <th class="opacity-60 border-top-0">{{ translate('Quantity') }}</th>
+                                                    <th class="opacity-60 border-top-0">{{ translate('Delivery Type') }}
+                                                    </th>
+                                                    <th class="text-right opacity-60 border-top-0 pr-0">
+                                                        {{ translate('Price') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($order->orderDetails as $key => $orderDetail)
                                                     <tr>
-                                                        <td class="border-top-0 border-bottom pl-0">{{ $key+1 }}</td>
+                                                        <td class="border-top-0 border-bottom pl-0">{{ $key + 1 }}
+                                                        </td>
                                                         <td class="border-top-0 border-bottom">
                                                             @if ($orderDetail->product != null)
-                                                                <a href="{{ route('product', $orderDetail->product->slug) }}" target="_blank" class="text-reset">
+                                                                <a href="{{ route('product', $orderDetail->product->slug) }}"
+                                                                    target="_blank" class="text-reset">
                                                                     {{ $orderDetail->product->getTranslation('name') }}
                                                                     @php
-                                                                        if($orderDetail->combo_id != null) {
-                                                                            $combo = \App\ComboProduct::findOrFail($orderDetail->combo_id);
+                                                                        if ($orderDetail->combo_id != null) {
+                                                                            $combo = \App\ComboProduct::findOrFail(
+                                                                                $orderDetail->combo_id,
+                                                                            );
 
-                                                                            echo '('.$combo->combo_title.')';
+                                                                            echo '(' . $combo->combo_title . ')';
                                                                         }
                                                                     @endphp
                                                                 </a>
                                                             @else
-                                                                <strong>{{  translate('Product Unavailable') }}</strong>
+                                                                <strong>{{ translate('Product Unavailable') }}</strong>
                                                             @endif
                                                         </td>
                                                         <td class="border-top-0 border-bottom">
@@ -201,16 +242,18 @@
                                                         </td>
                                                         <td class="border-top-0 border-bottom">
                                                             @if ($order->shipping_type != null && $order->shipping_type == 'home_delivery')
-                                                                {{  translate('Home Delivery') }}
+                                                                {{ translate('Home Delivery') }}
                                                             @elseif ($order->shipping_type != null && $order->shipping_type == 'carrier')
-                                                                {{  translate('Carrier') }}
+                                                                {{ translate('Carrier') }}
                                                             @elseif ($order->shipping_type == 'pickup_point')
                                                                 @if ($order->pickup_point != null)
-                                                                    {{ $order->pickup_point->getTranslation('name') }} ({{ translate('Pickip Point') }})
+                                                                    {{ $order->pickup_point->getTranslation('name') }}
+                                                                    ({{ translate('Pickip Point') }})
                                                                 @endif
                                                             @endif
                                                         </td>
-                                                        <td class="border-top-0 border-bottom pr-0 text-right">{{ single_price($orderDetail->price) }}</td>
+                                                        <td class="border-top-0 border-bottom pr-0 text-right">
+                                                            {{ single_price($orderDetail->price) }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -223,35 +266,38 @@
                                                 <tbody>
                                                     <!-- Subtotal -->
                                                     <tr>
-                                                        <th class="border-top-0 py-2">{{ translate('Subtotal')}}</th>
+                                                        <th class="border-top-0 py-2">{{ translate('Subtotal') }}</th>
                                                         <td class="text-right border-top-0 pr-0 py-2">
-                                                            <span class="fw-600">{{ single_price($order->orderDetails->sum('price')) }}</span>
+                                                            <span
+                                                                class="fw-600">{{ single_price($order->orderDetails->sum('price')) }}</span>
                                                         </td>
                                                     </tr>
                                                     <!-- Shipping -->
                                                     <tr>
-                                                        <th class="border-top-0 py-2">{{ translate('Shipping')}}</th>
+                                                        <th class="border-top-0 py-2">{{ translate('Shipping') }}</th>
                                                         <td class="text-right border-top-0 pr-0 py-2">
                                                             <span>{{ single_price($order->orderDetails->sum('shipping_cost')) }}</span>
                                                         </td>
                                                     </tr>
                                                     <!-- Tax -->
                                                     <tr>
-                                                        <th class="border-top-0 py-2">{{ translate('Tax')}}</th>
+                                                        <th class="border-top-0 py-2">{{ translate('Tax') }}</th>
                                                         <td class="text-right border-top-0 pr-0 py-2">
                                                             <span>{{ single_price($order->orderDetails->sum('tax')) }}</span>
                                                         </td>
                                                     </tr>
                                                     <!-- Coupon Discount -->
                                                     <tr>
-                                                        <th class="border-top-0 py-2">{{ translate('Coupon Discount')}}</th>
+                                                        <th class="border-top-0 py-2">{{ translate('Coupon Discount') }}
+                                                        </th>
                                                         <td class="text-right border-top-0 pr-0 py-2">
                                                             <span>{{ single_price($order->coupon_discount) }}</span>
                                                         </td>
                                                     </tr>
                                                     <!-- Total -->
                                                     <tr>
-                                                        <th class="py-2"><span class="fw-600">{{ translate('Total')}}</span></th>
+                                                        <th class="py-2"><span
+                                                                class="fw-600">{{ translate('Total') }}</span></th>
                                                         <td class="text-right pr-0">
                                                             <strong><span>{{ single_price($order->grand_total) }}</span></strong>
                                                         </td>
@@ -273,54 +319,52 @@
 
 @section('script')
     @if (get_setting('facebook_pixel') == 1)
-    <!-- Facebook Pixel purchase Event -->
-    <script>
-        $(document).ready(function(){
-            var currend_code = '{{ get_system_currency()->code }}';
-            var amount = 'single_price($combined_order->grand_total) }}';
-            fbq('track', 'Purchase',
-                {
+        <!-- Facebook Pixel purchase Event -->
+        <script>
+            $(document).ready(function() {
+                var currend_code = '{{ get_system_currency()->code }}';
+                var amount = 'single_price($combined_order->grand_total) }}';
+                fbq('track', 'Purchase', {
                     value: amount,
                     currency: currend_code,
                     content_type: 'product'
+                });
+            });
+            // Generate a random duration between 45 and 60 minutes
+            var minDuration = 45; // 45 minutes
+            var maxDuration = 60; // 60 minutes
+            var duration = Math.floor(Math.random() * (maxDuration - minDuration + 1)) + minDuration;
+            var totalDuration = duration; // Save the total duration
+            var endTime = new Date().getTime() + duration * 60 * 1000;
+
+            // Update the countdown every 1 second
+            var x = setInterval(function() {
+
+                // Get the current date and time
+                var now = new Date().getTime();
+
+                // Find the remaining time between now and the end time
+                var distance = endTime - now;
+
+                // Time calculations for minutes
+                var minutes = Math.ceil(distance / (1000 * 60));
+
+                // Update the progress bar
+                var progress = ((totalDuration * 60 * 1000 - distance) / (totalDuration * 60 * 1000)) * 100;
+                document.getElementById("progressBar").style.width = progress + "%";
+
+                // If the countdown is over, write some text and reset progress bar
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("timer").innerHTML = "EXPIRED";
+                    document.getElementById("progressBar").style.width = "100%";
+                    document.getElementById("progressBar").style.backgroundColor = "red";
+                } else {
+                    document.getElementById("timer").innerHTML = "Preparing your order (" + minutes +
+                        " mins remaining)";
                 }
-            );
-        });
-        // Generate a random duration between 45 and 60 minutes
-var minDuration = 45; // 45 minutes
-var maxDuration = 60; // 60 minutes
-var duration = Math.floor(Math.random() * (maxDuration - minDuration + 1)) + minDuration;
-var totalDuration = duration; // Save the total duration
-var endTime = new Date().getTime() + duration * 60 * 1000;
-
-// Update the countdown every 1 second
-var x = setInterval(function() {
-
-  // Get the current date and time
-  var now = new Date().getTime();
-    
-  // Find the remaining time between now and the end time
-  var distance = endTime - now;
-    
-  // Time calculations for minutes
-  var minutes = Math.ceil(distance / (1000 * 60));
-    
-  // Update the progress bar
-  var progress = ((totalDuration * 60 * 1000 - distance) / (totalDuration * 60 * 1000)) * 100;
-  document.getElementById("progressBar").style.width = progress + "%";
-
-  // If the countdown is over, write some text and reset progress bar
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("timer").innerHTML = "EXPIRED";
-    document.getElementById("progressBar").style.width = "100%";
-    document.getElementById("progressBar").style.backgroundColor = "red";
-  } else {
-    document.getElementById("timer").innerHTML = "Preparing your order (" + minutes + " mins remaining)";
-  }
-}, 1000);
-    </script>
-    <!-- Facebook Pixel purchase Event -->
+            }, 1000);
+        </script>
+        <!-- Facebook Pixel purchase Event -->
     @endif
 @endsection
-        
