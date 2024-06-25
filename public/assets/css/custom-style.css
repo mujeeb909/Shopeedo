@@ -83,6 +83,135 @@
 /* for order confirmation page- start */
 .order-progress-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  
+}
+
+.hero-rider h2 {
+    max-width: 90%; /* Use percentage for maximum width */
+    font-size: 4vw; /* Use viewport width units for font size */
+    margin: 0; /* Reset margin */
+    box-sizing: border-box; /* Ensure padding is included in element's total width */
+}
+
+/* Adjustments for very small screens */
+@media (max-width: 320px) {
+    .hero-rider h2 {
+        font-size: 5vw; /* Further adjust font size for very small screens */
+    }
+}
+
+.form-section {
+    background-color: #7D9A40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust height as needed */
+}
+
+.form-group {
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Adjust max width as needed */
+    margin: auto;
+}
+
+.form-control {
+    width: 100%;
+    /* padding: 15px;    */
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional for a subtle shadow effect */
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* margin-top:  20px; */
+}
+
+.form-label {
+    display: block;
+    margin: 10px 0 0 10px;
+    color: white; /* Adjust text color as needed */
+    font-size: 1.2rem;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0 15px 10px;
+    color: white;
+}
+
+.checkbox-container{
+    margin: 0   0 15px 10px;
+    color: white;
+}
+
+.ride-button {
+  /* margin: auto; */
+  /* min-width: 120px; */
+  /* width:60%; */
+  padding: 5px 50px 5px 50px;
+  border-radius: 10px;
+  border-color: white;
+  color: #7D9A40;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.image-container {
+    width: 100%; /* Adjust as needed */
+    height: auto; /* Adjust as needed */
+    /* max-width: 600px; /* Adjust as needed */
+    /* max-height: 400px; Adjust as needed */
+    /* overflow: hidden; */
+}
+
+.responsive-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* or contain, depending on your requirement */
+}
+  
+label {
+    margin:0;
+}
+
+.radio-container span { 
+    font-size: 17px;
+}
+
+.table thead th {
+    background-color: #7D9A40;
+    color: white;
+}
+.highlight {
+    background-color: #E9F5D0;
+}
+
+.highlight td {
+    border-top: none !important; /* Remove top border */
+}
+
+/* .accordion-header {
+    background-color: rgba(145, 137, 137, 0.2);
+    color: black;
+} */
+.accordion-body {
+    /* background-color: #918989; */
+    background-color: rgba(145, 137, 137, 0.2);
+}
+
+.card-header.active-header,
+.card-body.active-body {
+        background-color: rgba(145, 137, 137, 0.2) !important;
+ }
+ 
+/* for order confirmation page- start */
+.order-progress-container {
+    display: flex;
     justify-content: space-between;
     width: 50%;
  }

@@ -794,4 +794,10 @@ class HomeController extends Controller
     {
         return view('delivery_boys.delivery_registeration');
     }
+
+    public function riderInfo()
+    {
+        // dd('hi rider');
+        return view('delivery_boys.rider-info');
+    }
 }
