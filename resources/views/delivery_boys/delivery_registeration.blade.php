@@ -38,18 +38,18 @@
                 <div class="col-md-5 col-sm-12">
                     <div class="rider-form p-5" style="background-color:#7D9A40; border-radius:10px ">
                         <h4 class="text-white text-center my-5">Enter Rider Details</h4>
-                        <form action="" class="form-group">
+                        <form action="{{ route('delivery.info') }}" method="post" class="form-group">
                             @csrf
-                            <input type="text" name="" id="" placeholder="First Name" class="form-control my-3" >
-                            <input type="text" name="" id="" placeholder="Last Name" class="form-control my-3" >
-                            <input type="number" name="" id="" placeholder="Phone Number" class="form-control my-3" >
-                            <select id="vehicle" name="vehicle" class="form-control my-3">
+                            <input type="text" name="" id="" placeholder="First Name" class="form-control my-3" required >
+                            <input type="text" name="" id="" placeholder="Last Name" class="form-control my-3" required >
+                            <input type="number" name="" id="" placeholder="Phone Number" class="form-control my-3" required >
+                            <select id="vehicle" name="vehicle" class="form-control my-3" required>
                                 <option value="" disabled selected>Select Vehicle</option>
                                 <option value="car" >Car</option>
                                 <option value="bike" >Bike</option>
                             </select>
-                            <input type="password" name="password" placeholder="Password" class="form-control my-3">
-                            <input type="password" name="confirm-password" placeholder="Confirm Password" class="form-control my-3">
+                            <input type="password" name="password" placeholder="Password" class="form-control my-3" required>
+                            <input type="password" name="confirm-password" placeholder="Confirm Password" class="form-control my-3" required>
                 
                             <label class="form-label">Are you over 18 years old?</label>
                             <div class="radio-group">
