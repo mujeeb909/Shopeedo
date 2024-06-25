@@ -34,6 +34,8 @@
     .progress-bar-step.active .circle {
         background-color: #7d9a40;
         color: #fff;
+        font-size: 20px;
+
     }
     .progress-bar-step .label {
         margin-top: 10px;
@@ -41,7 +43,7 @@
     .progress-line {
         position: absolute;
         top: 32px;
-        left: 7%;
+        left: 3%;
         height: 5px;
         width: calc(100% - 80px); /* Adjust this to change the line width */
         background-color: #ddd;
@@ -76,7 +78,21 @@
         border-radius: 10px;
         border: none;
     }
+
+    .label-style {
+        font-size: 18px;
+        margin-bottom: 10px;
+        /* padding:12px ; */
+        /* border-radius: 10px; */ 
+        /* border: none; */
+   
+    }
     
+    @media (max-width: 768px) {
+    .form-control {
+        width: 100%; /* Width for small and extra small screens */
+    }
+}
 </style>
 @endsection
 
@@ -151,39 +167,39 @@
                 <form>
                     <div class="container p-4" style="max-width:700px; border-radius:20px; background-color:#EEEEEE">
                           <!-- Radio buttons for marital status -->
-                        <div>
-                            <label>1.Are you married?</label><br>
-                            <input type="radio" id="married_yes" name="marital_status" value="yes">
-                            <label for="married_yes">Yes</label><br>
-                            <input type="radio" id="married_no" name="marital_status" value="no">
-                            <label for="married_no">No</label>
+                        <div >
+                            <label class="label-style fw-600">1. What is your marital status?</label><br>
+                            <input type="radio" id="married_yes" name="marital_status" value="yes"  >
+                            <label class="label-style" for="married_yes">Single</label><br>
+                            <input type="radio" id="married_no" name="marital_status" value="no"  >
+                            <label class="label-style" for="married_no">Married</label>
                         </div>
 
                           <!-- cnic number -->
                           <div>
-                            <label>2.Enter your CNIC number</label><br>
-                            <input type="number"  class="form-control" id="cnic" name="cnic" value="" placeholder="Enter Your Cnic">
+                            <label class="label-style fw-600 " >2. Enter your CNIC number</label><br>
+                            <input type="number"  class="form-control mb-3" id="cnic" name="cnic" value="" placeholder="Enter Your Cnic">
                         </div>
 
                          <!-- Date of Birth -->
                          <div>
-                            <label>3.Date of birth</label><br>
-                            <input type="date"  class="form-control" id="cnic" name="cnic" value="" placeholder="Enter Your Cnic">
+                            <label class="label-style fw-600">3. Date of birth</label><br>
+                            <input type="date"  class="form-control mb-3" id="dob" name="dob" value="" >
                         </div>
                         {{-- martial status --}}
                         <div>
-                        <label for="maritalStatus" class="mb-2">4.In which area of Lahore are you registering?</label>
-                        <select class="form-control" id="maritalStatus">
+                        <label class="label-style fw-600" for="area" class="mb-2">4. In which area of Lahore are you registering?</label>
+                        <select class="form-control mb-3" id="area">
 
                             <option selected>Select area</option>
-                            <option>Married</option>
+                            <option>Lahore</option>
                         </select>
                        </div>
 
                        {{-- Religion --}}
                        <div>
-                        <label  class="mb-2">5.What is your religion?</label>
-                        <select class="form-control">
+                        <label class="label-style fw-600 mb-2" >5. What is your religion?</label>
+                        <select class="form-control mb-3">
 
                             <option selected>Select area</option>
                             <option>Islam</option>
@@ -192,8 +208,8 @@
                       
                        {{-- Education --}}
                        <div>
-                        <label  class="mb-2">6.What is your highest level of education completed?</label>
-                        <select class="form-control">
+                        <label  class=" label-style fw-600 mb-2">6. What is your highest level of education completed?</label>
+                        <select class="form-control mb-3">
 
                             <option selected>Select Education</option>
                             <option>Matric</option>
@@ -202,8 +218,8 @@
 
                        {{-- Education --}}
                        <div>
-                        <label  class="mb-2">7.How many people are there in your family?</label>
-                        <select class="form-control">
+                        <label  class= "label-style fw-600 mb-2">7. How many people are there in your family?</label>
+                        <select class="form-control mb-3"  >
                             <option selected>Select Members</option>
                             <option>1</option>
                             <option>2</option>
@@ -212,17 +228,17 @@
 
                           <!-- Radio buttons for currently employed -->
                           <div>
-                            <label>8.Are you currently employed?</label><br>
+                            <label class="label-style fw-600">8. Are you currently employed?</label><br>
                             <input type="radio" id="employed_yes" name="employed_status" value="yes">
-                            <label for="employed_yes">Yes</label><br>
+                            <label class="label-style " for="employed_yes">Yes</label><br>
                             <input type="radio" id="employed_no" name="employed_status" value="no">
-                            <label for="employed_no">No</label>
+                            <label class="label-style " for="employed_no">No</label>
                          </div>
 
                           {{-- current working status --}}
                        <div>
-                        <label  class="mb-2">9.If yes, where are you currently working?</label>
-                        <select class="form-control">
+                        <label  class=" label-style fw-600 mb-2">9. If yes, where are you currently working?</label>
+                        <select class="form-control mb-3">
                             <option selected>Select Organization</option>
                             <option>1</option>
                             <option>2</option>
@@ -231,17 +247,17 @@
 
                        <!-- Radio buttons for experience status -->
                        <div>
-                        <label>10.Do you have any experience in food delivery?</label><br>
+                        <label class="label-style fw-600">10. Do you have any experience in food delivery?</label><br>
                         <input type="radio" id="experience_yes" name="experience_status" value="yes">
-                        <label for="experience_yes">Yes</label><br>
+                        <label class="label-style  mb-2" for="experience_yes">Yes</label><br>
                         <input type="radio" id="experience_no" name="experience_status" value="no">
-                        <label for="experience_no">No</label>
+                        <label  class="label-style  mb-2" for="experience_no">No</label>
                      </div>
 
                         {{-- current employment status --}}
                         <div>
-                            <label  class="mb-2">11.What type of employment are you interested in?</label>
-                            <select class="form-control">
+                            <label  class="label-style fw-600 mb-2">11. What type of employment are you interested in?</label>
+                            <select class="form-control mb-3">
                                 <option selected>Select Employment Type</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -250,20 +266,20 @@
 
                            <!-- Emergency name-->
                          <div>
-                            <label>12.Enter name of emergency contact</label><br>
-                            <input type="text"  class="form-control" id="emergency_name" name="emergency_name" value="" placeholder="Enter Name">
+                            <label class="label-style fw-600">12. Enter name of emergency contact</label><br>
+                            <input type="text"  class="form-control mb-3" id="emergency_name" name="emergency_name" value="" placeholder="Enter Name">
                         </div>
 
                           <!-- Emergency contact-->
                           <div>
-                            <label>13.Enter name of emergency contact</label><br>
-                            <input type="number"  class="form-control" id="emergency_number" name="emergency_number" value="" placeholder="Enter Contact">
+                            <label class="label-style fw-600">13. Enter number of emergency contact</label><br>
+                            <input type="number"  class="form-control mb-3" id="emergency_number" name="emergency_number" value="" placeholder="Enter Contact">
                         </div>
 
                         {{-- here about shopeedo--}}
                         <div>
-                            <label  class="mb-2">11.Where did you hear about shopeedo?</label>
-                            <select class="form-control">
+                            <label  class="label-style fw-600 mb-2">14. Where did you hear about shopeedo?</label>
+                            <select class="form-control mb-3">
                                 <option selected>Select </option>
                                 <option>1</option>
                                 <option>2</option>
@@ -273,13 +289,15 @@
 
                     </div>
                     <!-- Add other form fields similarly -->
+                    
                 </form>
-            </div>
                 <!-- Form elements for step 2 go here -->
-                <div class="d-flex justify-content-between">
-                <button class="btn btn-secondary prev-step rider-btn-style" data-prev="step1">Previous</button>
-                <button class="btn btn-primary next-step rider-btn-style" data-next="step3">Next</button>
+                <div class="d-flex justify-content-center justify-content-md-between flex-wrap m-4">
+                    <button class="btn btn-secondary prev-step rider-btn-style m-2" data-prev="step1" style=" padding:12px 60px;">Previous</button>
+                    <button class="btn btn-primary next-step rider-btn-style m-2" data-next="step3">Next</button>
                 </div>
+            </div>
+                
             </div>
             <!-- Step 3 -->
             <div class="tab-pane  step" id="step3">
@@ -306,12 +324,14 @@
                                 </label>
                             </div>
                         </div>
+                            
                     </form>
+                    <div class="d-flex justify-content-between m-6">
+                        <button class="btn btn-secondary prev-step rider-btn-style m-2" data-prev="step2">Previous</button>
+                        <button class="btn btn-primary next-step rider-btn-style m-2" data-next="step4">Next</button>
+                        </div>
                 </div>
-                <div class="d-flex justify-content-between">
-                <button class="btn btn-secondary prev-step rider-btn-style" data-prev="step2">Previous</button>
-                <button class="btn btn-primary next-step rider-btn-style" data-next="step4">Next</button>
-            </div>
+                
             </div>
             <!-- Step 4 -->
             <div class="tab-pane  step" id="step4">

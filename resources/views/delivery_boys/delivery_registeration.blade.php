@@ -1,5 +1,49 @@
 @extends('delivery_boys.layouts.test')
 
+@section('style')
+<style>
+.form-group {
+            margin: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+
+        .radio-group, .checkbox-container {
+            margin-bottom: 15px;
+        }
+
+        .ride-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-white {
+            color: #fff;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+</style>
+@endsection
+
 @section('content')
     
     {{-- Hero Section --}}
@@ -38,9 +82,9 @@
                 <div class="col-md-5 col-sm-12">
                     <div class="rider-form p-5" style="background-color:#7D9A40; border-radius:10px ">
                         <h4 class="text-white text-center my-5">Enter Rider Details</h4>
-                        <form action="{{ route('delivery.info') }}" method="post" class="form-group">
+                        {{-- <form action="{{ route('delivery.info') }}" method="post" class="form-group">
                             @csrf
-                            <input type="text" name="" id="" placeholder="First Name" class="form-control my-3" required >
+                            <input type="text" name="" id="" placeholder="First Name" class="form-control my-3" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
                             <input type="text" name="" id="" placeholder="Last Name" class="form-control my-3" required >
                             <input type="number" name="" id="" placeholder="Phone Number" class="form-control my-3" required >
                             <select id="vehicle" name="vehicle" class="form-control my-3" required>
@@ -76,6 +120,59 @@
                         </div>
                             </div>
 
+                        </form> --}}
+
+                        <form action="{{ route('delivery.info') }}" method="post" class="form-group" id="deliveryForm">
+                            @csrf
+                            <input type="text" name="first_name" id="first-name" placeholder="First Name" class="form-control" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
+                            <div class="error-message" id="first-name-error">Please enter a valid first name. Only letters are allowed.</div>
+                            
+                            <input type="text" name="last_name" id="last-name" placeholder="Last Name" class="form-control" required pattern="^[A-Za-z]+$" title="Last name should only contain letters.">
+                            <div class="error-message" id="last-name-error">Please enter your last name.</div>
+                            
+                            <input type="text" name="phone_number" id="phone-number" placeholder="Phone Number" class="form-control" required pattern="^\d{11}$" maxlength="11"  title="Phone number should be 11 digits.">
+                            <div class="error-message" id="phone-number-error">Please enter a valid phone number with 11 digits.</div>
+                            
+                            <select id="vehicle" name="vehicle" class="form-control" required>
+                                <option value="" disabled selected>Select Vehicle</option>
+                                <option value="car">Car</option>
+                                <option value="bike">Bike</option>
+                            </select>
+                            <div class="error-message" id="vehicle-error">Please select a vehicle.</div>
+                            
+                            <input type="password" name="password" id="password" placeholder="Password" class="form-control" required minlength="8">
+                            <div class="error-message" id="password-error">Password must be at least 8 characters long.</div>
+                            
+                            <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" class="form-control" required>
+                            <div class="error-message" id="confirm-password-error">Passwords do not match.</div>
+                    
+                            <label class="form-label">Are you over 18 years old?</label>
+                            <div class="radio-group">
+                                <label class="radio-container">
+                                    <input type="radio" name="over_18" value="yes" required>
+                                    <span>Yes</span>
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="over_18" value="no" required>
+                                    <span>No</span>
+                                </label>
+                            </div>
+                            <div class="error-message" id="over-18-error">Please select an option.</div>
+                            
+                            <div>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="agreement" id="agreement" required>
+                                    I Agree to <a href="https://dev.shopeedo.com/terms-and-conditions" class="text-white"><strong>Terms & Conditions</strong></a> and Privacy Policy of Shopeedo
+                                </label>
+                            </div>
+                            <div class="error-message" id="agreement-error">You must agree to the terms and conditions.</div>
+                            
+                            <div class="text-center">
+                                <button class="ride-button" type="submit">Submit</button>
+                                <div>
+                                    <label for="" class="text-white mt-2">Already have an Account? <a href="{{ route('deliveryboy.login') }}" class="text-white bold">Sign In</a></label>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -268,5 +365,102 @@
             $(e.target).removeClass('active-body');
         });
     });
+
+    document.getElementById('deliveryForm').addEventListener('submit', function(event) {
+            let isValid = true;
+
+            const firstName = document.getElementById('first-name');
+            const firstNameError = document.getElementById('first-name-error');
+            if(!firstName.checkValidity()){
+                firstNameError.style.display = "block";
+                isValid = false;
+            } else {
+                firstNameError.style.display = 'none'
+            }
+
+            // First Name validation
+            // const firstName = document.getElementById('first-name');
+            // const firstNameError = document.getElementById('first-name-error');
+            // if (!firstName.checkValidity()) {
+            //     firstNameError.style.display = 'block';
+            //     isValid = false;
+            // } else {
+            //     firstNameError.style.display = 'none';
+            // }
+
+            // Last Name validation
+            const lastName = document.getElementById('last-name');
+            const lastNameError = document.getElementById('last-name-error');
+            if (!lastName.checkValidity()) {
+                lastNameError.style.display = 'block';
+                isValid = false;
+            } else {
+                lastNameError.style.display = 'none';
+            }
+
+            // Phone Number validation
+            const phoneNumber = document.getElementById('phone-number');
+            const phoneNumberError = document.getElementById('phone-number-error');
+            if (!phoneNumber.checkValidity()) {
+                phoneNumberError.style.display = 'block';
+                isValid = false;
+            } else {
+                phoneNumberError.style.display = 'none';
+            }
+
+            // Vehicle selection validation
+            const vehicle = document.getElementById('vehicle');
+            const vehicleError = document.getElementById('vehicle-error');
+            if (!vehicle.checkValidity()) {
+                vehicleError.style.display = 'block';
+                isValid = false;
+            } else {
+                vehicleError.style.display = 'none';
+            }
+
+            // Password validation
+            const password = document.getElementById('password');
+            const passwordError = document.getElementById('password-error');
+            if (!password.checkValidity()) {
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            // Confirm Password validation
+            const confirmPassword = document.getElementById('confirm-password');
+            const confirmPasswordError = document.getElementById('confirm-password-error');
+            if (confirmPassword.value !== password.value) {
+                confirmPasswordError.style.display = 'block';
+                isValid = false;
+            } else {
+                confirmPasswordError.style.display = 'none';
+            }
+
+            // Over 18 validation
+            const over18 = document.querySelector('input[name="over_18"]:checked');
+            const over18Error = document.getElementById('over-18-error');
+            if (!over18) {
+                over18Error.style.display = 'block';
+                isValid = false;
+            } else {
+                over18Error.style.display = 'none';
+            }
+
+            // Agreement validation
+            const agreement = document.getElementById('agreement');
+            const agreementError = document.getElementById('agreement-error');
+            if (!agreement.checkValidity()) {
+                agreementError.style.display = 'block';
+                isValid = false;
+            } else {
+                agreementError.style.display = 'none';
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
 </script>
 @endsection
