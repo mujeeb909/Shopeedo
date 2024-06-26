@@ -155,14 +155,14 @@
                 <div class="circle">3</div>
                 <div class="label">Step 3</div>
             </div>
-            <div class="progress-bar-step" id="progress-step4">
+            <!-- <div class="progress-bar-step" id="progress-step4">
                 <div class="circle">4</div>
                 <div class="label">Step 4</div>
-            </div>
-            <div class="progress-bar-step" id="progress-step5">
+            </div> -->
+            <!-- <div class="progress-bar-step" id="progress-step5">
                 <div class="circle">5</div>
                 <div class="label">Step 5</div>
-            </div>
+            </div> -->
         </div>
         {{-- <div class="card">
             <div class="card-body">
