@@ -93,6 +93,47 @@
         width: 100%; /* Width for small and extra small screens */
     }
 }
+.upload-form {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #e3e3e3;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    .custom-file-upload {
+      display: block;
+      width: 100%;
+      height: 50px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      background-color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+    .custom-file-upload input[type="file"] {
+      display: none;
+    }
+    .custom-file-upload .fa-plus {
+      /* position: absolute; */
+      top: 50%;
+      left: 120px;
+      /* transform: translateY(-50%); */
+      font-size: 20px;
+    color: #00000073;
+    background-color: #F0F0F0;
+    border: 1px solid #72727280;
+    border-radius: 50%;
+    text-align: center;
+    padding: 5px;
+    }
+    .custom-file-upload span {
+      font-size: 16px;
+      color: #6c757d;
+      line-height: 1.5;
+    }
 </style>
 @endsection
 
@@ -305,33 +346,116 @@
                 <h5 class="text-center">Upload Documents</h5>
                 <p class="text-center">Please upload clear pictures of the required documents for verification.</p>
                 <!-- Form elements for step 3 go here -->
-                <div>
+                <div class="m-auto">
                    
                     <form action="">
-                        <div class="container p-4" style="background-color:#EEEEEE">
-                            {{-- <div >
-                                <label for="exampleFormControlFile1">1.Upload your picture (.pdf, .png or .jpg, max 10MB)</label>
-                                <input type="file" class="form-control-file form-control " id="exampleFormControlFile1">
-                               
+                        <div class="container p-4" style="max-width:700px; border-radius:20px; background-color:#EEEEEE"">
 
-                              </div> --}}
-
-                              <div class="upload-container">
-                                <input type="file" id="file-upload" />
-                                <label for="file-upload" class="file-upload-label">
-                                    <span class="plus-icon">+</span>
-                                    <span class="upload-text">Upload Picture</span>
+                              
+                            <div class="form-group mb-3">
+                                <label  class="label-style fw-600">1. Upload your picture (.pdf, .png or .jpg, max 10MB)</label>
+                                <label class="custom-file-upload">
+                                    <input type="file" accept=".pdf, .png, .jpg">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Upload picture</span>
                                 </label>
                             </div>
+                            <div class="form-group mb-3 ">
+                                <label class="label-style fw-600">2.Upload CNIC front picture (.pdf, .png or .jpg, max 10MB)</label>
+                                <label class="custom-file-upload">
+                                    <input type="file" accept=".pdf, .png, .jpg">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Upload picture</span>
+                                </label>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label-style fw-600">3. Upload CNIC back picture (.pdf, .png or .jpg, max 10MB)</label>
+                                <label class="custom-file-upload">
+                                    <input type="file" accept=".pdf, .png, .jpg">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Upload picture</span>
+                                </label>
+                            </div>
+
+
+                            <div class="form-group mb-3">
+                                <label class="label-style fw-600">4. Upload screenshot of security deposit transaction (.pdf, .png or .jpg, max 10MB)</label>
+                                <label class="custom-file-upload">
+                                    <input type="file" accept=".pdf, .png, .jpg">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Upload picture</span>
+                                </label>
+                            </div>
+
+                            <!-- Registration Number-->
+                            <div class="form-group mb-3">
+                                <label class="label-style fw-600">5. Enter motorcycle registration number</label>
+                                <input type="number"  class="custom-file-upload" id="registration_number" name="registration_number" value="" placeholder="Enter Number">
+                            </div>
+                        <!-- Date of Birth -->
+                            <div class="form-group mb-3">
+                                <label class="label-style fw-600">6. Enter driver license expiry date</label><br>
+                                <input type="date"  class="custom-file-upload" id="license" name="license" value="" >
+                            </div>
+
+          
+
+                            <div class="form-group mb-3">
+                                <label class="label-style fw-600">7. Upload driving license front picture (.pdf, .png or .jpg, max 10MB)</label>
+                                <label class="custom-file-upload">
+                                    <input type="file" accept=".pdf, .png, .jpg">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Upload picture</span>
+                                </label>
+                            </div>
+
+                            <!-- mobile IMEI Number-->
+                            <div class="form-group mb-3">
+                                <label class="label-style fw-600">8. Enter Mobile IMEI Number</label>
+                                <input type="number"  class="custom-file-upload" id="imei_number" name="imei_number" value="" placeholder=" Enter Mobile IMEI Number">
+                            </div>
+                        <!-- IMEI details -->
+                            <div class="form-group mb-3">
+                                <label class="label-style fw-600">9. Upload mobile IMEI details screenshot (.pdf, .png or .jpg, max 10MB) </label>
+                                <label class="custom-file-upload">
+                                    <input type="file" accept=".pdf, .png, .jpg">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Upload picture</span>
+                                </label>
+                            </div>
+
+                     
+
+                       <!--  NADRA verification  -->
+                       <div class="form-group mb-3">
+                            <label class="label-style fw-600">10. Upload NADRA verification screenshot (.pdf, .png or .jpg, max 10MB) </label>
+                            <label class="custom-file-upload">
+                                <input type="file" accept=".pdf, .png, .jpg">
+                                <i class="fas fa-plus"></i>
+                                <span>Upload picture</span>
+                            </label>
                         </div>
-                            
-                    </form>
-                    <div class="d-flex justify-content-between m-6">
-                        <button class="btn btn-secondary prev-step rider-btn-style m-2" data-prev="step2">Previous</button>
-                        <button class="btn btn-primary next-step rider-btn-style m-2" data-next="step4">Next</button>
-                        </div>
+
+                          <!-- police verification form  -->
+                       <div class="form-group mb-3">
+                        <label class="label-style fw-600">11. Upload police verification form (.pdf, .png or .jpg, max 10MB) </label>
+                        <label class="custom-file-upload">
+                            <input type="file" accept=".pdf, .png, .jpg">
+                            <i class="fas fa-plus"></i>
+                            <span>Upload picture</span>
+                        </label>
+                    </div>
+
                 </div>
-                
+                 
+                <div class="d-flex justify-content-center justify-content-md-between flex-wrap m-4">
+                    <button class="btn btn-secondary prev-step rider-btn-style m-2" data-prev="step2" style=" padding:12px 60px;">Previous</button>
+                    <!-- <button class="btn btn-primary next-step rider-btn-style m-2" data-next="step4">Next</button> -->
+                    <button class="btn btn-primary rider-btn-style" type="submit">Submit</button>
+                </div>          
+            </form>
+               
+                 
             </div>
             <!-- Step 4 -->
             <div class="tab-pane  step" id="step4">
@@ -341,6 +465,7 @@
 
                 <button class="btn btn-secondary prev-step rider-btn-style" data-prev="step3">Previous</button>
                 <button class="btn btn-primary next-step rider-btn-style" data-next="step5">Next</button>
+                
             </div>
             </div>
             <!-- Step 5 -->
