@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DeliveryBoy;
 use Auth;
 use Hash;
 use Mail;
@@ -795,9 +796,44 @@ class HomeController extends Controller
         return view('delivery_boys.delivery_registeration');
     }
 
-    public function riderInfo()
+    public function riderInfo(Request $request)
     {
+        $validate = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email'     => 'required|unique:users|max:255',
+            'phone'     => 'required|unique:users',
+            'vehicle_type' => 'required',
+            'over_18' => 'required',
+            'agreement' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = new User();
+
+        $user->name = $request->first_name . ' ' . $request->last_name;
+        $user->user_type = 'delivery_boy';
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->vehicle_type = $request->vehicle_type;
+        $user->age_confirmation = $request->over_18;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $delivery_boy = new DeliveryBoy();
+
+        $delivery_boy->user_id = $user->id;
+
+        $delivery_boy->save();
+
+        // flash(translate('Delivery Boy starting information has been created successfully now move add more details '))->success();
+        session()->flash('success', 'Delivery Boy starting information has been created successfully, add more details to become a rider');
+
         // dd('hi rider');
+
+
+
         return view('delivery_boys.rider-info');
+        // ->with('success', 'Delivery Boy starting information has been created successfully now move add more details');
     }
 }

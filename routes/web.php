@@ -478,3 +478,6 @@ Route::controller(PageController::class)->group(function () {
     //Custom page
     Route::get('/{slug}', 'show_custom_page')->name('custom-pages.show_custom_page');
 });
+
+
+// Route:post('/delivery',[TestDeliveryBoyController::class, 'store'])

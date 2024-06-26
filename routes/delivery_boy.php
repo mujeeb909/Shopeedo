@@ -17,10 +17,11 @@
 use App\Http\Controllers\DeliveryBoyController;
 use App\Http\Controllers\OrderController;
 
-Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin', 'prevent-back-history']], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-back-history']], function () {
     //Delivery Boy
     Route::resource('delivery-boys', DeliveryBoyController::class);
-    
+
+
     Route::controller(DeliveryBoyController::class)->group(function () {
         Route::get('/delivery-boy/ban/{id}', 'ban')->name('delivery-boy.ban');
         Route::get('/delivery-boy-configuration', 'delivery_boy_configure')->name('delivery-boy-configuration');
@@ -31,11 +32,10 @@ Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin', 'prevent-bac
         Route::get('/delivery-boys-payment-histories', 'delivery_boys_payment_histories')->name('delivery-boys-payment-histories');
         Route::get('/delivery-boys-collection-histories', 'delivery_boys_collection_histories')->name('delivery-boys-collection-histories');
         Route::get('/delivery-boy/cancel-request', 'cancel_request_list')->name('delivery-boy.cancel-request');
-        
     });
 });
 
-Route::group(['middleware' => ['user', 'verified', 'unbanned', 'prevent-back-history']], function() {
+Route::group(['middleware' => ['user', 'verified', 'unbanned', 'prevent-back-history']], function () {
     Route::controller(DeliveryBoyController::class)->group(function () {
         Route::get('/assigned-deliveries', 'assigned_delivery')->name('assigned-deliveries');
         Route::get('/pickup-deliveries', 'pickup_delivery')->name('pickup-deliveries');
@@ -56,5 +56,4 @@ Route::group(['middleware' => ['user', 'verified', 'unbanned', 'prevent-back-his
     Route::controller(DeliveryBoyController::class)->group(function () {
         Route::get('/delivery-boy/order-detail/{id}', 'order_detail')->name('delivery-boy.order-detail');
     });
-    
 });

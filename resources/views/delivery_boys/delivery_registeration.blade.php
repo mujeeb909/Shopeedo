@@ -41,6 +41,11 @@
         .bold {
             font-weight: bold;
         }
+        .invalid_feedback{
+            color: white;
+            font-size: 16px;
+            margin: 13px;
+        }
 </style>
 @endsection
 
@@ -82,93 +87,81 @@
                 <div class="col-md-5 col-sm-12">
                     <div class="rider-form p-5" style="background-color:#7D9A40; border-radius:10px ">
                         <h4 class="text-white text-center my-5">Enter Rider Details</h4>
-                        {{-- <form action="{{ route('delivery.info') }}" method="post" class="form-group">
-                            @csrf
-                            <input type="text" name="" id="" placeholder="First Name" class="form-control my-3" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
-                            <input type="text" name="" id="" placeholder="Last Name" class="form-control my-3" required >
-                            <input type="number" name="" id="" placeholder="Phone Number" class="form-control my-3" required >
-                            <select id="vehicle" name="vehicle" class="form-control my-3" required>
-                                <option value="" disabled selected>Select Vehicle</option>
-                                <option value="car" >Car</option>
-                                <option value="bike" >Bike</option>
-                            </select>
-                            <input type="password" name="password" placeholder="Password" class="form-control my-3" required>
-                            <input type="password" name="confirm-password" placeholder="Confirm Password" class="form-control my-3" required>
-                
-                            <label class="form-label">Are you over 18 years old?</label>
-                            <div class="radio-group">
-                                <label class="radio-container">
-                                    <input type="radio" name="over_18" value="yes">
-                                        <span>Yes</span>
-                                </label>
-                                <label class="radio-container"> 
-                                    <input type="radio" name="over_18" value="no">
-                                    <span> No</span>
-                                </label>
-                            </div>
-
-                            <div>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" name="agreement">
-                                    I Agree to <a href="https://dev.shopeedo.com/terms-and-conditions" class="text-white"><strong>Terms & Conditions</strong></a> and Privacy Policy of Shopeedo
-                                </label>
-                            </div>
-                            <div class="text-center">
-                            <button class="ride-button"  type="submit" >Submit</button>
-                            <div>
-                            <label for="" class="text-white mt-2">Already have an Account? <a href="" class="text-white bold">Sign In</a></label>
-                        </div>
-                            </div>
-
-                        </form> --}}
 
                         <form action="{{ route('delivery.info') }}" method="post" class="form-group" id="deliveryForm">
                             @csrf
-                            <input type="text" name="first_name" id="first-name" placeholder="First Name" class="form-control" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
+                            <input type="text" name="first_name" id="first-name" placeholder="First Name" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
                             <div class="error-message" id="first-name-error">Please enter a valid first name. Only letters are allowed.</div>
+                            @error('first_name')
+                                <div class="invalid_feedback"> {{ $message }}</div>
+                            @enderror
                             
-                            <input type="text" name="last_name" id="last-name" placeholder="Last Name" class="form-control" required pattern="^[A-Za-z]+$" title="Last name should only contain letters.">
+                            <input type="text" name="last_name" id="last-name" placeholder="Last Name" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="Last name should only contain letters.">
                             <div class="error-message" id="last-name-error">Please enter your last name.</div>
+                            @error('last_name')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
+
+                            <input type="email" name="email" id="email" placeholder="Email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" required>
+                            <div class="error-message" id="last-name-error">Please enter your email</div>
+                            @error('email')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
                             
-                            <input type="text" name="phone_number" id="phone-number" placeholder="Phone Number" class="form-control" required pattern="^\d{11}$" maxlength="11"  title="Phone number should be 11 digits.">
+                            <input type="text" name="phone" id="phone" placeholder="Phone Number" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" required pattern="^\d{11}$" maxlength="11"  title="Phone number should be 11 digits.">
                             <div class="error-message" id="phone-number-error">Please enter a valid phone number with 11 digits.</div>
-                            
-                            <select id="vehicle" name="vehicle" class="form-control" required>
+                            @error('phone')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
+
+                            <select id="vehicle" name="vehicle_type" class="form-control @error('vehichle_type') is-invalid @enderror" required>
                                 <option value="" disabled selected>Select Vehicle</option>
-                                <option value="car">Car</option>
-                                <option value="bike">Bike</option>
+                                <option value="car"  {{ old('vehicle_type') == 'car' ? 'selected' : '' }}>Car</option>
+                                <option value="bike"  {{ old('vehicle_type') == 'bike' ? 'selected' : '' }}>Bike</option>
                             </select>
                             <div class="error-message" id="vehicle-error">Please select a vehicle.</div>
-                            
-                            <input type="password" name="password" id="password" placeholder="Password" class="form-control" required minlength="8">
+                            @error('vehicle_type')
+                            <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
+                        
+                            <input type="password" name="password" id="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" required minlength="8">
                             <div class="error-message" id="password-error">Password must be at least 8 characters long.</div>
                             
+                            @error('password')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
                             <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" class="form-control" required>
                             <div class="error-message" id="confirm-password-error">Passwords do not match.</div>
                     
                             <label class="form-label">Are you over 18 years old?</label>
                             <div class="radio-group">
                                 <label class="radio-container">
-                                    <input type="radio" name="over_18" value="yes" required>
+                                    <input type="radio" name="over_18" class="@error('over_18') is-invalid @enderror" value="1" {{ old('over_18') == 1 ? 'checked' : ''}} required>
                                     <span>Yes</span>
                                 </label>
                                 <label class="radio-container">
-                                    <input type="radio" name="over_18" value="no" required>
+                                    <input type="radio" name="over_18" class="@error('over_18') is-invalid @enderror" value="0" {{old('over_18')  == 0 ? 'checked' : ''}}  required>
                                     <span>No</span>
                                 </label>
                             </div>
                             <div class="error-message" id="over-18-error">Please select an option.</div>
+                            @error('over_18')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
                             
                             <div>
                                 <label class="checkbox-container">
-                                    <input type="checkbox" name="agreement" id="agreement" required>
+                                    <input type="checkbox" name="agreement" id="agreement" class="@error('agreement') is-invalid @enderror" required>
                                     I Agree to <a href="https://dev.shopeedo.com/terms-and-conditions" class="text-white"><strong>Terms & Conditions</strong></a> and Privacy Policy of Shopeedo
                                 </label>
                             </div>
                             <div class="error-message" id="agreement-error">You must agree to the terms and conditions.</div>
-                            
+                            @error('agreement')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
+
                             <div class="text-center">
-                                <button class="ride-button" type="submit">Submit</button>
+                                <button class="ride-button" id="submit-button" type="submit" disabled style="border: none">Submit</button>
                                 <div>
                                     <label for="" class="text-white mt-2">Already have an Account? <a href="{{ route('deliveryboy.login') }}" class="text-white bold">Sign In</a></label>
                                 </div>
@@ -366,6 +359,12 @@
         });
     });
 
+    // enable submit button 
+
+    document.getElementById('agreement').addEventListener('change', function(){
+        document.getElementById('submit-button').disabled= !this.checked;
+    });
+
     document.getElementById('deliveryForm').addEventListener('submit', function(event) {
             let isValid = true;
 
@@ -396,6 +395,14 @@
                 isValid = false;
             } else {
                 lastNameError.style.display = 'none';
+            }
+
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('email-error')
+            if(!email.checkValidity()){
+                emailError.style.display = 'block'
+            }else {
+                emailError.style.display = 'none'
             }
 
             // Phone Number validation
