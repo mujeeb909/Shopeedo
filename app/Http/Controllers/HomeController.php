@@ -801,8 +801,8 @@ class HomeController extends Controller
         $validate = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            // 'email'     => 'required|unique:users|max:255',
-            'phone_number'     => 'required',
+            'email'     => 'required|unique:users|max:255',
+            'phone'     => 'required|unique:users',
             'vehicle_type' => 'required',
             'over_18' => 'required',
             'agreement' => 'required',
@@ -813,8 +813,8 @@ class HomeController extends Controller
 
         $user->name = $request->first_name . ' ' . $request->last_name;
         $user->user_type = 'delivery_boy';
-        // $user->email = $request->email;
-        $user->phone = $request->phone_number;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
         $user->vehicle_type = $request->vehicle_type;
         $user->age_confirmation = $request->over_18;
         $user->password = Hash::make($request->password);
