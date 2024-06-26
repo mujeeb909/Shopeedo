@@ -2,6 +2,9 @@
 
 @section('style')
 <style>
+     body {
+    font-family: 'Inter', sans-serif !important;
+}
 .form-group {
             margin: 20px;
         }
@@ -12,6 +15,7 @@
             font-size: 16px;
             box-sizing: border-box;
             margin-bottom: 15px;
+            border-radius: 11px;
         }
 
         .error-message {
@@ -25,9 +29,10 @@
         }
 
         .ride-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+            font-size: 24px;
+            padding:12px 80px;
+            border-radius: 10px;
+            border: none;
         }
 
         .text-center {
@@ -45,6 +50,71 @@
             color: white;
             font-size: 16px;
             margin: 13px;
+        }
+        .checkbox-container {
+            display: inline-block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .custom-checkbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 2px;
+        }
+
+        .checkbox-container input:checked ~ .custom-checkbox {
+            background-color: #2196F3;
+        }
+
+        .checkbox-container input:checked ~ .custom-checkbox:after {
+            display: block;
+        }
+
+        .checkbox-container .custom-checkbox:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container a {
+            color: white;
+        }
+
+        .checkbox-container a:hover {
+            text-decoration: underline;
+        }
+        .form-radio-input {
+            width: 20px;
+            height: 20px;
         }
 </style>
 @endsection
@@ -85,10 +155,10 @@
                    </div>
                 </div>
                 <div class="col-md-5 col-sm-12">
-                    <div class="rider-form p-5" style="background-color:#7D9A40; border-radius:10px ">
-                        <h4 class="text-white text-center my-5">Enter Rider Details</h4>
+                    <div class="rider-form py-5" style="background-color:#7D9A40; border-radius:10px ">
+                        <h4 class="text-white text-center my-5" style="font-size: 24px">Enter Rider Details</h4>
 
-                        <form action="{{ route('delivery.info') }}" method="post" class="form-group" id="deliveryForm">
+                        <form action="{{ route('delivery.info') }}" method="post" class="form-group m-auto" id="deliveryForm">
                             @csrf
                             <input type="text" name="first_name" id="first-name" placeholder="First Name" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
                             <div class="error-message" id="first-name-error">Please enter a valid first name. Only letters are allowed.</div>
@@ -135,12 +205,12 @@
                     
                             <label class="form-label">Are you over 18 years old?</label>
                             <div class="radio-group">
-                                <label class="radio-container">
-                                    <input type="radio" name="over_18" class="@error('over_18') is-invalid @enderror" value="1" {{ old('over_18') == 1 ? 'checked' : ''}} required>
+                                <label class="radio-container d-flex align-items-center ">
+                                    <input type="radio" name="over_18" class="mr-1 form-radio-input @error('over_18') is-invalid @enderror" value="1" {{ old('over_18') == 1 ? 'checked' : ''}} required>
                                     <span>Yes</span>
                                 </label>
-                                <label class="radio-container">
-                                    <input type="radio" name="over_18" class="@error('over_18') is-invalid @enderror" value="0" {{old('over_18')  == 0 ? 'checked' : ''}}  required>
+                                <label class="radio-container d-flex align-items-center ">
+                                    <input type="radio" name="over_18" class="mr-1 form-radio-input @error('over_18') is-invalid @enderror" value="0" {{old('over_18')  == 0 ? 'checked' : ''}}  required>
                                     <span>No</span>
                                 </label>
                             </div>
@@ -152,7 +222,8 @@
                             <div>
                                 <label class="checkbox-container">
                                     <input type="checkbox" name="agreement" id="agreement" class="@error('agreement') is-invalid @enderror" required>
-                                    I Agree to <a href="https://dev.shopeedo.com/terms-and-conditions" class="text-white"><strong>Terms & Conditions</strong></a> and Privacy Policy of Shopeedo
+                                    <span>I Agree to <a href="https://dev.shopeedo.com/terms-and-conditions" class="text-white"><strong>Terms & Conditions</strong></a> and Privacy Policy of Shopeedo</span>
+                                    <span class="custom-checkbox"></span>
                                 </label>
                             </div>
                             <div class="error-message" id="agreement-error">You must agree to the terms and conditions.</div>
@@ -161,7 +232,7 @@
                             @enderror
 
                             <div class="text-center">
-                                <button class="ride-button" id="submit-button" type="submit" disabled style="border: none">Submit</button>
+                                <button class="ride-button" id="submit-button" type="submit" disabled >Submit</button>
                                 <div>
                                     <label for="" class="text-white mt-2">Already have an Account? <a href="{{ route('deliveryboy.login') }}" class="text-white bold">Sign In</a></label>
                                 </div>
