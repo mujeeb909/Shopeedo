@@ -124,49 +124,70 @@
 
                         <form action="{{ route('delivery.info') }}" method="post" class="form-group" id="deliveryForm">
                             @csrf
-                            <input type="text" name="first_name" id="first-name" placeholder="First Name" class="form-control" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
+                            <input type="text" name="first_name" id="first-name" placeholder="First Name" class="form-control @error('first_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
                             <div class="error-message" id="first-name-error">Please enter a valid first name. Only letters are allowed.</div>
+                            @error('first_name')
+                                <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
                             
-                            <input type="text" name="last_name" id="last-name" placeholder="Last Name" class="form-control" required pattern="^[A-Za-z]+$" title="Last name should only contain letters.">
+                            <input type="text" name="last_name" id="last-name" placeholder="Last Name" class="form-control @error('last_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="Last name should only contain letters.">
                             <div class="error-message" id="last-name-error">Please enter your last name.</div>
+                            @error('last_name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             
-                            <input type="text" name="phone_number" id="phone-number" placeholder="Phone Number" class="form-control" required pattern="^\d{11}$" maxlength="11"  title="Phone number should be 11 digits.">
+                            <input type="text" name="phone_number" id="phone-number" placeholder="Phone Number" class="form-control @error('phone_number') is-invalid @enderror" required pattern="^\d{11}$" maxlength="11"  title="Phone number should be 11 digits.">
                             <div class="error-message" id="phone-number-error">Please enter a valid phone number with 11 digits.</div>
-                            
-                            <select id="vehicle" name="vehicle" class="form-control" required>
+                            @error('phone_number')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
+
+                            <select id="vehicle" name="vehicle_type" class="form-control @error('vehichle_type') is-invalid @enderror" required>
                                 <option value="" disabled selected>Select Vehicle</option>
                                 <option value="car">Car</option>
                                 <option value="bike">Bike</option>
                             </select>
                             <div class="error-message" id="vehicle-error">Please select a vehicle.</div>
-                            
-                            <input type="password" name="password" id="password" placeholder="Password" class="form-control" required minlength="8">
+                            @error('vehicle_type')
+                            <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
+                        
+                            <input type="password" name="password" id="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" required minlength="8">
                             <div class="error-message" id="password-error">Password must be at least 8 characters long.</div>
                             
+                            @error('password')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
                             <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" class="form-control" required>
                             <div class="error-message" id="confirm-password-error">Passwords do not match.</div>
                     
                             <label class="form-label">Are you over 18 years old?</label>
                             <div class="radio-group">
                                 <label class="radio-container">
-                                    <input type="radio" name="over_18" value="yes" required>
+                                    <input type="radio" name="over_18" class="@error('over_18') is-invalid @enderror" value="yes" required>
                                     <span>Yes</span>
                                 </label>
                                 <label class="radio-container">
-                                    <input type="radio" name="over_18" value="no" required>
+                                    <input type="radio" name="over_18" class="@error('over_18') is-invalid @enderror" value="no" required>
                                     <span>No</span>
                                 </label>
                             </div>
                             <div class="error-message" id="over-18-error">Please select an option.</div>
+                            @error('over_18')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
                             
                             <div>
                                 <label class="checkbox-container">
-                                    <input type="checkbox" name="agreement" id="agreement" required>
+                                    <input type="checkbox" name="agreement" id="agreement" class="@error('agreement') is-invalid @enderror" required>
                                     I Agree to <a href="https://dev.shopeedo.com/terms-and-conditions" class="text-white"><strong>Terms & Conditions</strong></a> and Privacy Policy of Shopeedo
                                 </label>
                             </div>
                             <div class="error-message" id="agreement-error">You must agree to the terms and conditions.</div>
-                            
+                            @error('agreement')
+                                <div class="invalid_feedback">{{ $message }}</div>
+                            @enderror
+
                             <div class="text-center">
                                 <button class="ride-button" type="submit">Submit</button>
                                 <div>

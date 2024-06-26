@@ -92,12 +92,25 @@
     .form-control {
         width: 100%; /* Width for small and extra small screens */
     }
+    
 }
 </style>
 @endsection
 
 @section('content')
-
+@if (session('success'))
+<div class="toast show ml-auto toast-custom" role="alert" aria-live="assertive" aria-atomic="true" >
+    <div class="toast-header">
+        <strong class="mr-auto">Success</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        {{ session('success') }}
+    </div>
+</div>
+@endif
 <section>
     <div class="container mt-5">
         <div class="progress-container">
@@ -381,5 +394,8 @@
             updateProgressBar(prevId.charAt(prevId.length - 1)); // Get the step number
         });
     });
+
+    $('.toast').toast({ delay: 5000 });
+    $('.toast').toast('show');
 </script>
 @endsection
