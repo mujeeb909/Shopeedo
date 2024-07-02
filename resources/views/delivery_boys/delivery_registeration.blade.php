@@ -117,7 +117,7 @@
             height: 20px;
         }
         .responsive-bg {
-            background-image: url('{{ static_asset('assets/img/rider_background.png') }}');
+            background-image: url('{{ static_asset('assets/img/rider_background.jpg') }}');
             /* height: 100vh;  */
             background-size: cover;
             /* background-position: center; */
@@ -142,7 +142,7 @@
         }
 
         .responsive-bg-img {
-            background-image: url('{{ static_asset('assets/img/rider_bg_bottom.png') }}');
+            background-image: url('{{ static_asset('assets/img/rider_bg_bottom.jpg') }}');
             /* height: 100vh;  */
             background-size: cover;
             /* background-position: center; */

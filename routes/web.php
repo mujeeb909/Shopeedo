@@ -110,7 +110,7 @@ Route::controller(HomeController::class)->group(function () {
 
     Route::get('/users/login', 'login')->name('user.login')->middleware('handle-demo-login');
     Route::get('/seller/login', 'login')->name('seller.login')->middleware('handle-demo-login');
-    Route::get('/deliveryboy/test', 'test')->name('deliveryboy.test')->middleware('handle-demo-login');
+    Route::get('/deliveryboy', 'test')->name('deliveryboy.test')->middleware('handle-demo-login');
     Route::post('/deliveryboy/rider-info', 'riderInfo')->name('delivery.info')->middleware('handle-demo-login');
 
 
