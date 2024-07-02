@@ -18,6 +18,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\FlashDeal;
 use App\Models\OrderDetail;
+use App\Models\Faq;
 use Illuminate\Support\Str;
 use App\Models\ProductQuery;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ use App\Mail\SecondEmailVerifyMailManager;
 use App\Models\Cart;
 use Artisan;
 use DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use ZipArchive;
@@ -793,21 +795,23 @@ class HomeController extends Controller
 
     public function test()
     {
-        return view('delivery_boys.delivery_registeration');
+        $faqs = Faq::all();
+        return view('delivery_boys.delivery_registeration', compact('faqs'));
     }
 
     public function riderInfo(Request $request)
     {
-        $validate = $request->validate([
+        $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
             'email'     => 'required|unique:users|max:255',
             'phone'     => 'required|unique:users',
-            'vehicle_type' => 'required',
-            'over_18' => 'required',
-            'agreement' => 'required',
-            'password' => 'required',
+            'city'      => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
         $user = new User();
 
@@ -815,9 +819,7 @@ class HomeController extends Controller
         $user->user_type = 'delivery_boy';
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->vehicle_type = $request->vehicle_type;
-        $user->age_confirmation = $request->over_18;
-        $user->password = Hash::make($request->password);
+        $user->city = $request->city;
         $user->save();
 
         $delivery_boy = new DeliveryBoy();
@@ -826,14 +828,16 @@ class HomeController extends Controller
 
         $delivery_boy->save();
 
+        return response()->json(['message' => 'Form submitted successfully']);
+
         // flash(translate('Delivery Boy starting information has been created successfully now move add more details '))->success();
-        session()->flash('success', 'Delivery Boy starting information has been created successfully, add more details to become a rider');
+        // session()->flash('success', 'Delivery Boy starting information has been created successfully, add more details to become a rider');
 
         // dd('hi rider');
 
 
 
-        return view('delivery_boys.rider-info');
+        // return view('delivery_boys.rider-info');
         // ->with('success', 'Delivery Boy starting information has been created successfully now move add more details');
     }
 }

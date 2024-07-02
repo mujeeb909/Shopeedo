@@ -51,7 +51,7 @@
         <div class="container py-4">
             <h1 class="fs-18 fw-700 text-gray-dark mb-3">{{ get_setting('footer_title', null, $system_language->code) }}
             </h1>
-            <p class="fs-13 text-gray-dark text-justify mb-0">
+            <p class="fs-13 text-justify mb-0">
                 {!! nl2br(get_setting('footer_description', null, $system_language->code)) !!}
             </p>
         </div>
@@ -59,7 +59,7 @@
 @endif
 
 <!-- footer top Bar -->
-<section class="bg-light border-top mt-auto">
+{{-- <section class="bg-light border-top mt-auto">
     <div class="container px-xs-0">
         <div class="row no-gutters border-left border-soft-light">
             <!-- Terms & conditions -->
@@ -139,7 +139,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- footer subscription & icons -->
 <section class="py-3 text-light footer-widget border-bottom"
@@ -675,7 +675,7 @@
                                         {{ translate('Login to Seller Panel') }}
                                     </a>
                                 </li>
-                                
+
                             @endguest
                             @if (get_setting('seller_app_link'))
                                 <li class="mb-2 pb-2">

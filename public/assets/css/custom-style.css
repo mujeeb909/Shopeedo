@@ -87,7 +87,7 @@
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
-  
+
 }
 
 .hero-rider h2 {
@@ -113,15 +113,15 @@
 }
 
 .form-group {
-    width: 80%; /* Adjust width as needed */
-    max-width: 600px; /* Adjust max width as needed */
+    /* Adjust width as needed */
+    /* max-width:480px; */
     margin: auto;
 }
 
 .form-control {
     width: 100%;
     /* padding: 15px;    */
-    border: none;
+    /* border: none; */
     border-radius: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional for a subtle shadow effect */
     font-size: 1rem;
@@ -146,20 +146,22 @@
 
 .checkbox-container{
     margin: 0   0 15px 10px;
-    color: white;
+    /* color: white; */
 }
 
 .ride-button {
-  /* margin: auto; */
-  /* min-width: 120px; */
-  /* width:60%; */
-  padding: 5px 50px 5px 50px;
   border-radius: 10px;
-  border-color: white;
-  color: #7D9A40;
-  font-weight: 600;
-  font-size: 24px;
+  background-color: #7D9A40 ;
+  color: white;
+  font-size: 17px;
+  width: 100%;
 }
+
+.ride-button:disabled {
+    background-color: #A9A9A9; /* Example gray color for disabled state */
+    cursor: not-allowed; /* Optional: change the cursor to indicate disabled state */
+    opacity: 0.6; /* Optional: make the button look less prominent */
+  }
 
 .image-container {
     width: 100%; /* Adjust as needed */
@@ -174,12 +176,12 @@
     height: auto;
     object-fit: cover; /* or contain, depending on your requirement */
 }
-  
+
 label {
     margin:0;
 }
 
-.radio-container span { 
+.radio-container span {
     font-size: 17px;
 }
 
@@ -201,14 +203,14 @@ label {
 } */
 .accordion-body {
     /* background-color: #918989; */
-    background-color: rgba(145, 137, 137, 0.2);
+    background-color: #F2F5EC;
 }
 
 .card-header.active-header,
 .card-body.active-body {
-        background-color: rgba(145, 137, 137, 0.2) !important;
+        background-color: #F2F5EC !important;
  }
- 
+
 /* for order confirmation page- start */
 .order-progress-container {
     display: flex;
@@ -223,7 +225,7 @@ label {
      margin-right: 0;
  }
  #timer{
-     font-weight: bold; 
+     font-weight: bold;
      font-size: 14px;
  }
  .text-size{
@@ -232,6 +234,6 @@ label {
  .time{
      display: flex;
      font-size: 35px;
-     font-weight: bold; 
+     font-weight: bold;
  }
  /* for order confirmation page- ends */

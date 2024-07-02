@@ -26,9 +26,11 @@
 
 </head>
 <body>
-        @include('delivery_boys.inc.nav_delivery')
+        {{-- @include('delivery_boys.inc.nav_delivery') --}}
         @yield('content')
 
+        @include("delivery_boys.inc.delivery_footer")
+        {{-- @include("delivery_boys.inc.footer") --}}
         <!-- SCRIPTS -->
     <script src="{{ static_asset('assets/js/vendors.js') }}"></script>
     <script src="{{ static_asset('assets/js/aiz-core.js') }}"></script>
@@ -61,6 +63,22 @@
             }
         }
     </script>
+
+    <script>
+        var acc = document.getElementsByClassName("aiz-accordion-heading");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+        </script>
 
     @yield('script')
 

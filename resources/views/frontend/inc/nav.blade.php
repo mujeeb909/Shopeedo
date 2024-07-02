@@ -100,7 +100,7 @@
                 <div class="col-6 d-flex align-items-center">
                     <div class="d-none d-xl-block ml-auto mr-0">
                         <div class="d-flex align-items-center nav-links-color" style="gap: 30px">
-                            <a href="">Become a Rider</a>
+                            <a href="{{ route('deliveryboy.index') }}">Become a Rider</a>
                             @if (addon_is_activated('affiliate_system'))
                                 <a class="" href="{{ route('affiliate.apply') }}">
                                     {{ translate('Be an affiliate partner') }}
