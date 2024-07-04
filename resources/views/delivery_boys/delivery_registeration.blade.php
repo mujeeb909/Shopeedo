@@ -15,7 +15,7 @@
             font-size: 16px;
             box-sizing: border-box;
             margin-bottom: 15px;
-            border-radius: 11px;
+            border-radius: 10px;
         }
 
         .error-message {
@@ -117,7 +117,7 @@
             height: 20px;
         }
         .responsive-bg {
-            background-image: url('{{ static_asset('assets/img/rider_background.jpg') }}');
+            background-image: url('{{ static_asset('assets/img/rider_background.png') }}');
             /* height: 100vh;  */
             background-size: cover;
             /* background-position: center; */
@@ -127,6 +127,8 @@
             color: #7D9A40;
         }
         .label-style {
+            color: black;
+            font-size: 15px;
             margin-left: 2px;
             margin-bottom: 4px;
         }
@@ -142,7 +144,7 @@
         }
 
         .responsive-bg-img {
-            background-image: url('{{ static_asset('assets/img/rider_bg_bottom.jpg') }}');
+            background-image: url('{{ static_asset('assets/img/rider_bg_bottom.png') }}');
             /* height: 100vh;  */
             background-size: cover;
             /* background-position: center; */
@@ -192,6 +194,13 @@
     background-color: #7D9A40;
     color:white;
 }
+
+.form-control:focus {
+    border-color:  #7D9A40;
+    box-shadow: none;
+}
+
+
 
 
 </style>
@@ -266,13 +275,13 @@
                     <form action="{{ route('delivery.info') }}" method="post" class="form-group"  id="deliveryForm">
                         @csrf
                         <label class="label-style" for="first-name"> First Name</label>
-                        <input type="text" name="first_name" id="first-name" placeholder="eg. Ali" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
+                        <input type="text" name="first_name" id="first-name" placeholder="Ali" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="First name should only contain letters.">
                         <div class="error-message" id="first-name-error">Please enter a valid first name. Only letters are allowed.</div>
 
 
                         <label class="label-style" for="last-name"> Last Name</label>
 
-                        <input type="text" name="last_name" id="last-name" placeholder="eg. Javed" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="Last name should only contain letters.">
+                        <input type="text" name="last_name" id="last-name" placeholder="Javed" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" required pattern="^[A-Za-z]+$" title="Last name should only contain letters.">
                         <div class="error-message" id="last-name-error">Please enter your last name.</div>
 
 
@@ -282,13 +291,13 @@
 
 
                         <label class="label-style" for="email"> Email</label>
-                        <input type="email" name="email" id="email" placeholder="eg. ali@abc.com " value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" required>
+                        <input type="email" name="email" id="email" placeholder="ali@abc.com " value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" required>
                         <div class="error-message" id="email-error">Please enter your email</div>
 
 
                         <label class="label-style" for="city">City</label>
                         <select id="city" name="city" class="form-control @error('city') is-invalid @enderror" required>
-                            <option value="" disabled selected>Select city</option>
+                            <option value="" disabled selected>Select City</option>
                             <option value="lahore"  {{ old('city') == 'lahore' ? 'selected' : '' }}>Lahore</option>
                             <option value="karachi"  {{ old('city') == 'karachi' ? 'selected' : '' }}>Karachi</option>
                         </select>
@@ -321,7 +330,7 @@
 
     <section class="pt-5" style="background-color:  #F2F5EC">
         <div class="container" >
-            <div class="row">
+            <div class="row m-auto">
                 <div class="col-md-3 col-sm-6 ">
                     <div class="d-flex flex-column align-items-center align-items-sm-start">
                         <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -467,7 +476,7 @@
 
     <section>
         <div class="container">
-        <h1 class="font-weight-bold my-5" style="max-width: 223px">Bonuses and Perks</h1>
+        <h1 class="font-weight-bold my-5" >Bonuses and Perks</h1>
         <div class="table-responsive ">
             <table class="table text-center ">
                 <thead >
@@ -517,7 +526,7 @@
 
     <section>
         <div class="container">
-            <h1 class="font-weight-bold my-5" style="max-width: 345px;">Frequently Asked Questions</h1>
+            <h1 class="font-weight-bold my-5">Frequently Asked Questions</h1>
             <div class="accordion" id="faqAccordion">
                 @foreach($faqs as $index => $question)
                     <div class="card">
@@ -529,13 +538,13 @@
                                 <i class="fas fa-angle-down"></i>
                             </span>
                         </div>
-                        <div id="collapse{{ $index }}" class="collapse" aria-labelledby="heading{{ $index }}" data-parent="#faqAccordion">
+                        <div id="collapse{{ $index }}" class="collapse" aria-labelledby="heading{{ $index }}">
                             <div class="card-body accordion-body">
                                 {{ $question->answer }}
                             </div>
                         </div>
-                     </div>
-                    @endforeach
+                    </div>
+                @endforeach
             </div>
 
 
@@ -575,34 +584,45 @@
 
 @section('script')
 <script>
-     $(document).ready(function() {
-            $('#faqAccordion .card-header, #faqAccordion .toggle-icon').on('click', function() {
-                var $this = $(this);
-                var $icon = $this.closest('.card-header').find('.toggle-icon i');
-                var $collapse = $this.closest('.card-header').next('.collapse');
-
-                // Toggle the collapse state
-                if ($collapse.hasClass('show')) {
-                    $collapse.collapse('hide');
-                    $icon.removeClass('fa-angle-down').addClass('fa-angle-up');
-                } else {
-                    $('#faqAccordion .collapse.show').collapse('hide'); // Close other open items
-                    $('#faqAccordion .toggle-icon i').removeClass('fa-angle-up').addClass('fa-angle-down'); // Reset all icons
-                    $collapse.collapse('show');
-                    $icon.removeClass('fa-angle-up').addClass('fa-angle-down');
-                }
-            });
-
-            $('#faqAccordion').on('show.bs.collapse', function (e) {
-                $(e.target).prev('.card-header').addClass('active-header');
-                $(e.target).addClass('active-body');
-            });
-
-            $('#faqAccordion').on('hide.bs.collapse', function (e) {
-                $(e.target).prev('.card-header').removeClass('active-header');
-                $(e.target).removeClass('active-body');
-            });
+      $(document).ready(function() {
+        // Initialize the arrows based on the initial collapse state
+        $('#faqAccordion .collapse').each(function() {
+            if ($(this).hasClass('show')) {
+                $(this).prev('.card-header').find('.toggle-icon i').removeClass('fa-angle-down').addClass('fa-angle-up');
+            } else {
+                $(this).prev('.card-header').find('.toggle-icon i').removeClass('fa-angle-up').addClass('fa-angle-down');
+            }
         });
+
+        $('#faqAccordion .card-header, #faqAccordion .toggle-icon').on('click', function() {
+            var $this = $(this);
+            var $icon = $this.closest('.card-header').find('.toggle-icon i');
+            var $collapse = $this.closest('.card-header').next('.collapse');
+
+            // Toggle the collapse state
+            if ($collapse.hasClass('show')) {
+                $collapse.collapse('hide');
+                $icon.removeClass('fa-angle-up').addClass('fa-angle-down');
+            } else {
+                $('#faqAccordion .collapse.show').collapse('hide'); // Close other open items
+                $('#faqAccordion .toggle-icon i').removeClass('fa-angle-up').addClass('fa-angle-down'); // Reset all icons
+                $collapse.collapse('show');
+                $icon.removeClass('fa-angle-down').addClass('fa-angle-up');
+            }
+        });
+
+        $('#faqAccordion').on('show.bs.collapse', function (e) {
+            $(e.target).prev('.card-header').addClass('active-header');
+            $(e.target).addClass('active-body');
+            $(e.target).prev('.card-header').find('.toggle-icon i').removeClass('fa-angle-down').addClass('fa-angle-up');
+        });
+
+        $('#faqAccordion').on('hide.bs.collapse', function (e) {
+            $(e.target).prev('.card-header').removeClass('active-header');
+            $(e.target).removeClass('active-body');
+            $(e.target).prev('.card-header').find('.toggle-icon i').removeClass('fa-angle-up').addClass('fa-angle-down');
+        });
+    });
 
     // enable submit button
 

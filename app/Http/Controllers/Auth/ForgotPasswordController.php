@@ -45,8 +45,9 @@ class ForgotPasswordController extends Controller
      */
     public function sendResetLinkEmail(Request $request)
     {
-        
-        $phone = "+{$request['country_code']}{$request['phone']}";
+        // return view('auth.' . get_setting('authentication_layout_select') . '.reset_password');
+
+        // $phone = "+{$request['country_code']}{$request['phone']}";
         if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
             $user = User::where('email', $request->email)->first();
             if ($user != null) {
@@ -67,18 +68,18 @@ class ForgotPasswordController extends Controller
                 return back();
             }
         }
-        else{
-            $user = User::where('phone', $phone)->first();
-            if ($user != null) {
-                $user->verification_code = rand(100000,999999);
-                $user->save();
-                SmsUtility::password_reset($user);
-                return view('otp_systems.frontend.auth.'.get_setting('authentication_layout_select').'.reset_with_phone');
-            }
-            else {
-                flash(translate('No account exists with this phone number'))->error();
-                return back();
-            }
-        }
+        // else{
+        //     $user = User::where('phone', $phone)->first();
+        //     if ($user != null) {
+        //         $user->verification_code = rand(100000,999999);
+        //         $user->save();
+        //         SmsUtility::password_reset($user);
+        //         return view('otp_systems.frontend.auth.'.get_setting('authentication_layout_select').'.reset_with_phone');
+        //     }
+        //     else {
+        //         flash(translate('No account exists with this phone number'))->error();
+        //         return back();
+        //     }
+        // }
     }
 }

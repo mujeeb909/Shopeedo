@@ -337,7 +337,7 @@
                 <div class="text-center text-sm-left mt-4">
                     <h4 class="fs-14 text-dark  fw-700 mb-3">
                         {{-- {{ get_setting('widget_one', null, App::getLocale()) }} --}}
-                        POLICY AND SUPPORT
+                        Policy and Support
                     </h4>
                     <ul class="list-unstyled">
                         @if (get_setting('widget_one_labels', null, App::getLocale()) != null)
@@ -362,7 +362,7 @@
             <!-- My Account -->
             <div class="{{ $col_values }}">
                 <div class="text-center text-sm-left mt-4">
-                    <h4 class="fs-14 text-dark  fw-700 mb-3">{{ translate('OTHER') }}</h4>
+                    <h4 class="fs-14 text-dark  fw-700 mb-3">{{ translate('Other ') }}</h4>
                     <ul class="list-unstyled">
                         @if (Auth::check())
                             <li class="mb-2">
@@ -452,13 +452,13 @@
                                     <li class="mb-2">
                                         <a class="fs-13 text-dark animate-underline-white"
                                             href="{{ route('deliveryboy.login') }}">
-                                            {{ translate('Become a Delivery Boy') }}
+                                            {{ translate('Become a Rider') }}
                                         </a>
                                     </li>
                                     <li class="mb-2">
                                         <a class="fs-13 text-dark animate-underline-white"
                                             href="{{ route('deliveryboy.login') }}">
-                                            {{ translate('Login to Delivery Panel') }}
+                                            {{ translate('Download Rider App (Android)') }}
                                         </a>
                                     </li>
                                 @endguest
@@ -467,7 +467,7 @@
                                     <li class="mb-2">
                                         <a class="fs-13 text-dark animate-underline-white" target="_blank"
                                             href="{{ get_setting('delivery_boy_app_link') }}">
-                                            {{ translate('Download Delivery Boy App') }}
+                                            {{ translate('Download Rider App (iOS)') }}
                                         </a>
                                     </li>
                                 @endif
@@ -519,7 +519,7 @@
                 {{-- <button
                     class="aiz-accordion fs-14 text-white bg-transparent">{{ get_setting('widget_one', null, App::getLocale()) }}</button> --}}
                     <button
-                    class="aiz-accordion fs-14 text-white bg-transparent">POLICY AND SUPPORT</button>
+                    class="aiz-accordion fs-14 text-white bg-transparent">Policy and Support</button>
             </div>
             <div class="aiz-accordion-panel bg-transparent" style="background-color: #212129 !important;">
                 <div class="container">
@@ -549,7 +549,7 @@
         <!-- My Account -->
         <div class="aiz-accordion-wrap bg-black">
             <div class="aiz-accordion-heading container bg-black">
-                <button class="aiz-accordion fs-14 text-white bg-transparent">{{ translate('OTHER') }}</button>
+                <button class="aiz-accordion fs-14 text-white bg-transparent">{{ translate('Other') }}</button>
             </div>
             <div class="aiz-accordion-panel bg-transparent" style="background-color: #212129 !important;">
                 <div class="container">
@@ -654,15 +654,15 @@
                                 <li class="mb-2 pb-2 {{ areActiveRoutes(['deliveryboy.login'], ' active') }}">
                                     <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white"
                                         href="{{ route('deliveryboy.login') }}">
-                                        {{ translate('Become a Delivery Boy') }}
+                                        {{ translate('Become a Rider') }}
                                     </a>
                                 </li>
-                                <li class="mb-2 pb-2 {{ areActiveRoutes(['deliveryboy.login'], ' active') }}">
+                                {{-- <li class="mb-2 pb-2 {{ areActiveRoutes(['deliveryboy.login'], ' active') }}">
                                     <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white"
                                         href="{{ route('deliveryboy.login') }}">
                                         {{ translate('Login to Delivery Boy Panel') }}
                                     </a>
-                                </li>
+                                </li> --}}
                             @endguest
                             @if (get_setting('delivery_boy_app_link'))
                                 <li class="mb-2 pb-2">
