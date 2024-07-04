@@ -700,27 +700,33 @@ class HomeController extends Controller
 
     public function reset_password_with_code(Request $request)
     {
-        if (($user = User::where('email', $request->email)->where('verification_code', $request->code)->first()) != null) {
-            if ($request->password == $request->password_confirmation) {
-                $user->password = Hash::make($request->password);
-                $user->email_verified_at = date('Y-m-d h:m:s');
-                $user->save();
-                event(new PasswordReset($user));
-                auth()->login($user, true);
+        // dd($request->otp_1 . $request->otp_2 . $request->otp_3 . $request->otp_4);
+        $otp_code = $request->otp_1 . $request->otp_2 . $request->otp_3 . $request->otp_4;
 
-                flash(translate('Password updated successfully'))->success();
+        //$request->code
+        if (($user = User::where('email', $request->email)->where('verification_code',  $otp_code)->first()) != null) {
+            return view('reset_password_confirm');
+            //     if ($request->password == $request->password_confirmation) {
+            //         $user->password = Hash::make($request->password);
+            //         $user->email_verified_at = date('Y-m-d h:m:s');
+            //         $user->save();
+            //         event(new PasswordReset($user));
+            //         auth()->login($user, true);
 
-                if (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff') {
-                    return redirect()->route('admin.dashboard');
-                }
-                return redirect()->route('home');
-            } else {
-                flash(translate("Password and confirm password didn't match"))->warning();
-                return view('auth.' . get_setting('authentication_layout_select') . '.reset_password');
-            }
-        } else {
-            flash(translate("Verification code mismatch"))->error();
-            return view('auth.' . get_setting('authentication_layout_select') . '.reset_password');
+            //         flash(translate('Password updated successfully'))->success();
+
+            //         if (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff') {
+            //             return redirect()->route('admin.dashboard');
+            //         }
+            //         return redirect()->route('home');
+            //     } else {
+            //         flash(translate("Password and confirm password didn't match"))->warning();
+            //         return view('auth.' . get_setting('authentication_layout_select') . '.reset_password');
+            //     }
+            // } else {
+            //     flash(translate("Verification code mismatch"))->error();
+            //     return view('auth.' . get_setting('authentication_layout_select') . '.reset_password');
+            // }
         }
     }
 

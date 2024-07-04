@@ -29,14 +29,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
     @if ($rtl == 1)
         <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
     @endif
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css?v=') }}{{ rand(1000, 9999) }}">
-    
+
     <style>
         :root{
             --blue: #3490f3;
@@ -63,7 +63,7 @@
             --soft-primary: {{ hex2rgba(get_setting('base_color', '#d43533'), 0.15) }};
         }
         body{
-            font-family: 'Public Sans', sans-serif;
+            font-family:  'inter', 'Public Sans', sans-serif;
             font-weight: 400;
         }
 
@@ -86,6 +86,7 @@
     </style>
 
     @yield('css')
+
     <script>
         var AIZ = AIZ || {};
     </script>
