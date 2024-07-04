@@ -3,9 +3,9 @@
 .env.php
 /app/Exceptions
 /node_modules
-/public/assets
-/public/storage
-/public/uploads
+# /public/assets
+# /public/storage
+# /public/uploads
 /storage/*.key
 /storage/debugbar
 /vendor
