@@ -60,7 +60,7 @@
 
 
 </style>
-    <div class="aiz-main-wrapper d-flex flex-column justify-content-md-center" style="background-color: #7D9A40;
+    <div class="aiz-main-wrapper d-flex flex-column justify-content-md-center" style="background-color: #fff;
 ">
         
         <section class=" overflow-hidden">
@@ -68,24 +68,12 @@
                 <div class="col-lg-6  img-hide">
                     <img src="{{ uploaded_asset(get_setting('seller_register_page_image')) }}" alt="" class="img-fit" style="padding: 80px">
                 </div>
-                <div class="col-lg-6 p-4 p-lg-5 d-flex flex-column  border" style="height: auto; background-color: white; border-radius:22px; max-width: 700px;">
+                <div class="col-lg-6 p-4 p-lg-5 d-flex flex-column" style="max-width: 700px;">
                                <!-- steps -->
                                <div class="container">
-                                    <div class="progress-container">
-                                        <div class="progress-bar-step active">
-                                            <div class="circle">1</div>
-                                            <div class="label">Step 1</div>
-                                        </div>
-                                        <div class="progress-line"></div>
-                                        <div class="progress-bar-step">
-                                            <div class="circle">2</div>
-                                            <div class="label">Step 2</div>
-                                        </div>
-                                     
-                                </div>
                                 <!-- Titles -->
-                                <div class="text-center">
-                                    <h1 class="fs-20 fs-md-24 fw-700">{{ translate('Create Account')}}</h1>
+                                <div>
+                                    <h1 class="fs-20 fs-md-24 fw-700" style="color: #7D9A40;">{{ translate('Create Account')}}</h1>
                                 </div>
 
                                 <!-- heading -->
@@ -93,9 +81,9 @@
                              
 
 
-                                <div class="mb-3 mt-3 text-center">
+                                <div class="mb-3 mt-3">
                     
-                                    <span class="">{{ translate('Let’s create your free Shopeedo Business account ')}}</span>
+                                    <span class="">{{ translate('Create your free shopeedo seller account')}}</span>
                                                    
                                               
                                 </div>
@@ -107,38 +95,38 @@
                                         <form id="reg-form" class="form-default" role="form" action="{{ route('register') }}" method="POST">
                                             @csrf
                                             <!-- First Name -->
-                                            <div class="form-group">
-                                                <!-- <label for="fname" class="fs-12 fw-700 text-soft-dark">{{  translate('First Name') }}</label> -->
+                                            <!-- <div class="form-group">
+                                                <label for="fname" class="fs-12 fw-700 text-soft-dark">{{  translate('First Name') }}</label>
                                                 <input type="text" class="form-control round-custom{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('fname') }}" placeholder="{{  translate('First Name') }}" name="fname">
                                                 @if ($errors->has('name'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('name') }}</strong>
                                                     </span>
                                                 @endif
-                                            </div>
+                                            </div> -->
 
                                             <!--Last Name -->
-                                            <div class="form-group">
-                                                <!-- <label for="lname" class="fs-12 fw-700 text-soft-dark">{{  translate('Last Name') }}</label> -->
+                                            <!-- <div class="form-group">
+                                                <label for="lname" class="fs-12 fw-700 text-soft-dark">{{  translate('Last Name') }}</label>
                                                 <input type="text" class="form-control round-custom{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('lname') }}" placeholder="{{  translate('Last Name') }}" name="lname">
                                                 @if ($errors->has('name'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('name') }}</strong>
                                                     </span>
                                                 @endif
-                                            </div>
+                                            </div> -->
 
                                              <!-- phone number -->
-                                             <div class="form-group phone-form-group mb-1">
-                                                    <!-- <label for="phone" class="fs-12 fw-700 text-soft-dark">{{  translate('Phone') }}</label> -->
-                                                    <input type="tel"  class="form-control round-custom{{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="phone" name="phone" autocomplete="off">
+                                             <div class="form-group phone-form-group">
+                                                    <label for="phone" class="fs-12  text-soft-dark">{{  translate('Mobile Number') }}</label>
+                                                    <input type="tel"  class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="03XX-XXXXXXX" name="phone" autocomplete="off">
                                             </div>
 
                                             <!--Email -->
                                             @if (addon_is_activated('otp_system'))
-                                                <div class="form-group email-form-group mb-1">
-                                                    <!-- <label for="email" class="fs-12 fw-700 text-soft-dark">{{ translate('Email') }}</label> -->
-                                                    <input type="email" style="margin-top: 13px" class="form-control round-custom {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{ translate('Email') }}" name="email" autocomplete="off">
+                                                <div class="form-group email-form-group">
+                                                    <label for="email" class="fs-12 text-soft-dark">{{ translate('Email Address') }}</label>
+                                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{ translate('eg. ali@abc.com ') }}" name="email" autocomplete="off">
                                                     @if ($errors->has('email'))
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $errors->first('email') }}</strong>
@@ -148,7 +136,7 @@
                                             @else
                                                 <div class="form-group">
                                                     <label for="email" class="fs-12 fw-700 text-soft-dark">{{ translate('Business Email') }}</label>
-                                                    <input type="email" class="form-control round-custom{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{ translate('Business Email') }}" name="email">
+                                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{ translate('eg. ali@abc.com ') }}" name="email">
                                                     @if ($errors->has('email'))
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $errors->first('email') }}</strong>
@@ -158,43 +146,43 @@
                                             @endif
 
                                                <!--Address -->
-                                               <div class="form-group mt-3">
-                                                <!-- <label for="address" class="fs-12 fw-700 text-soft-dark">{{  translate('Address') }}</label> -->
+                                               <!-- <div class="form-group mt-3">
+                                                <label for="address" class="fs-12 fw-700 text-soft-dark">{{  translate('Address') }}</label>
                                                 <input type="text" class="form-control round-custom{{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Address') }}" name="address" required>
                                                 @if ($errors->has('address'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('address') }}</strong>
                                                     </span>
                                                 @endif
-                                            </div>
+                                            </div> -->
 
                                             <!-- Country -->
-                                            <div class="form-group mt-3">
-                                                <!-- <label for="country" class="fs-12 fw-700 text-soft-dark">{{  translate('Country') }}</label> -->
+                                            <!-- <div class="form-group mt-3">
+                                                <label for="country" class="fs-12 fw-700 text-soft-dark">{{  translate('Country') }}</label>
                                                 <select id="country" class="form-control round-custom" name="country" onchange="updateCityDropdown()">
                                                     <option value="pk">Pakistan</option>
                                                     <option value="Canada">Canada</option>
                                                     <option value="UK">UK</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
 
                                             <!-- City -->
-                                            <div class="form-group mt-3">
-                                                <!-- <label for="city" class="fs-12 fw-700 text-soft-dark">{{  translate('City') }}</label> -->
+                                            <!-- <div class="form-group mt-3">
+                                                <label for="city" class="fs-12 fw-700 text-soft-dark">{{  translate('City') }}</label>
                                                 <select id="city" class="form-control round-custom" name="city">
                                                     <option value="lhr">Lahore</option>>
                                                 </select>
-                                            </div>
+                                            </div> -->
 
                                             <!-- password -->
                                             <div class="form-group mb-0">
-                                                <!-- <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label> -->
+                                                <label for="password" class="fs-12 text-soft-dark">{{  translate('Password') }}</label>
                                                 <div class="position-relative">
-                                                    <input type="password" class="form-control round-custom{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{  translate('Password') }}" name="password">
+                                                    <input type="password" class="form-control { $errors->has('password') ? ' is-invalid' : '' }}" placeholder="************************" name="password">
                                                     <i class="password-toggle las la-2x la-eye"></i>
                                                 </div>
-                                                <div class="text-right mt-1">
-                                                    <span class="fs-12 fw-400 text-gray-dark">{{ translate('Password must contain at least 6 digits') }}</span>
+                                                <div class="text-right">
+                                                    <!-- <span class="fs-12 fw-400 text-gray-dark">{{ translate('Password must contain at least 6 digits') }}</span> -->
                                                 </div>
                                                 @if ($errors->has('password'))
                                                     <span class="invalid-feedback" role="alert">
@@ -205,9 +193,9 @@
 
                                             <!-- password Confirm -->
                                             <div class="form-group">
-                                                <!-- <label for="password_confirmation" class="fs-12 fw-700 text-soft-dark">{{  translate('Confirm Password') }}</label> -->
+                                                <label for="password_confirmation" class="fs-12  text-soft-dark">{{  translate('Confirm Password') }}</label>
                                                 <div class="position-relative">
-                                                    <input type="password" class="form-control round-custom" placeholder="{{  translate('Confirm Password') }}" name="password_confirmation">
+                                                    <input type="password" class="form-control" placeholder="************************" name="password_confirmation">
                                                     <i class="password-toggle las la-2x la-eye"></i>
                                                 </div>
                                             </div>
@@ -232,17 +220,17 @@
                                                     <span class="aiz-square-check"></span>
                                                 </label>
                                             </div> -->
-                                            <div class="mb-3">
+                                            <!-- <div class="mb-3">
                                                 <label class="aiz-checkbox">
                                                     <input type="checkbox" name="checkbox_example_1" required>
                                                     <span class="">{{ translate('I am authorized to operate the account. ')}}</span>
                                                     <span class="aiz-square-check"></span>
                                                 </label>
-                                            </div>
+                                            </div> -->
 
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
-                                                <button type="submit" class="btn btn-primary btn-block fw-600 round-submit">{{  translate('Submit') }}</button>
+                                                <button type="submit" class="btn btn-primary btn-block fw-600 round-submit">{{  translate('Create Account') }}</button>
                                             </div>
                                         </form>
                                         
@@ -285,7 +273,7 @@
                                     </div>
 
                                     <!-- Log In -->
-                                    <p class="fs-12 text-gray mb-0">
+                                    <p class="fs-12  mb-0">
                                         {{ translate('Already have an account?')}}
                                         <a href="{{ route('user.login') }}" class="ml-2 fs-14 fw-700 animate-underline-primary">{{ translate('Log In')}}</a>
                                     </p>
